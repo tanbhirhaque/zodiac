@@ -44,7 +44,7 @@ process.on('uncaughtException', (error) => {
   logger.error('Uncaught Exception caught:', error);
 });
 
-logger.boot('Dead Lead Society Bot is starting...');
+logger.boot('Zodiac is starting...');
 
 // Start keep-alive HTTP server for 24/7 cloud hosting (Render, Koyeb, Railway)
 startHealthServer(config.port);
@@ -96,6 +96,13 @@ client.once(Events.ClientReady, () => {
 
   // Initialize automated news & autopsy schedules
   scheduler.init(client);
+
+  // Enforce server display name as Zodiac
+  for (const [, guild] of client.guilds.cache) {
+    guild.members.fetchMe().then(me => {
+      if (me.nickname !== 'Zodiac') me.setNickname('Zodiac').catch(() => {});
+    }).catch(() => {});
+  }
 
   // Set rich presence
   client.user.setPresence({

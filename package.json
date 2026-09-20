@@ -1,7 +1,7 @@
 {
-  "name": "dead-lead-society-bot",
+  "name": "zodiac",
   "version": "1.0.0",
-  "description": "Discord Bot for Dead Lead Society - Where Dead Leads Get a Second Chance",
+  "description": "Zodiac - The Autonomous Intelligence & Reanimation Engine for Dead Lead Society",
   "main": "src/bot.js",
   "engines": {
     "node": ">=20.0.0"

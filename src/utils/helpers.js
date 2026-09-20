@@ -4,7 +4,8 @@ const { ChannelType, PermissionFlagsBits, EmbedBuilder } = require('discord.js')
  * Brand colors and design tokens for Dead Lead Society
  */
 const BRAND = {
-  NAME: 'DEAD LEAD SOCIETY',
+  NAME: 'ZODIAC',
+  SOCIETY: 'Dead Lead Society',
   TAGLINE: 'Where Dead Leads Get a Second Chance.',
   COLOR_PRIMARY: 0xE67E22,   // Revival Amber
   COLOR_SUCCESS: 0x2ECC71,   // Green
@@ -97,7 +98,7 @@ function createBrandedEmbed({ title, description, color = BRAND.COLOR_PRIMARY, f
     .setColor(color)
     .setTimestamp()
     .setFooter({
-      text: `${BRAND.NAME} • ${BRAND.TAGLINE}`
+      text: `${BRAND.NAME} • ${BRAND.SOCIETY} | ${BRAND.TAGLINE}`
     });
 
   if (title) embed.setTitle(title.length > 256 ? title.substring(0, 253) + '...' : title);

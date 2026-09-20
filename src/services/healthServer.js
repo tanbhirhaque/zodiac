@@ -46,7 +46,8 @@ function startHealthServer(port = process.env.PORT || 3000) {
 
       return res.end(JSON.stringify({
         status: 'online',
-        service: 'Dead Lead Society Bot',
+        service: 'Zodiac',
+        organization: 'Dead Lead Society',
         tagline: 'Where Dead Leads Get a Second Chance.',
         uptimeSeconds: Math.floor(process.uptime()),
         timestamp: new Date().toISOString()
