@@ -1,0 +1,30 @@
+{
+  "name": "dead-lead-society-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot for Dead Lead Society - Where Dead Leads Get a Second Chance",
+  "main": "src/bot.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "node src/bot.js",
+    "dev": "node --watch src/bot.js",
+    "deploy": "node src/deploy-commands.js",
+    "setup": "node src/cli-setup.js",
+    "populate": "node src/scripts/populateWelcomeAndRules.js"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discordjs",
+    "dead-lead-society"
+  ],
+  "author": "Dead Lead Society",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "node-cron": "^4.6.0",
+    "rss-parser": "^3.13.0"
+  }
+}

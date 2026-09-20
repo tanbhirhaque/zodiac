@@ -1,0 +1,261 @@
+{
+  "community": {
+    "name": "DEAD LEAD SOCIETY",
+    "tagline": "Where Dead Leads Get a Second Chance."
+  },
+  "roles": [
+    {
+      "name": "Admin",
+      "color": "#E74C3C",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": [
+        "ManageGuild",
+        "ManageChannels",
+        "ManageRoles",
+        "KickMembers",
+        "BanMembers",
+        "ManageMessages",
+        "MuteMembers",
+        "DeafenMembers",
+        "MoveMembers",
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory"
+      ]
+    },
+    {
+      "name": "Moderator",
+      "color": "#3498DB",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": [
+        "ManageMessages",
+        "KickMembers",
+        "MuteMembers",
+        "DeafenMembers",
+        "MoveMembers",
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory"
+      ]
+    },
+    {
+      "name": "Lead Specialist",
+      "color": "#F1C40F",
+      "hoist": true,
+      "mentionable": false,
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "AddReactions",
+        "Connect",
+        "Speak"
+      ]
+    },
+    {
+      "name": "Community Member",
+      "color": "#95A5A6",
+      "hoist": false,
+      "mentionable": false,
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "AddReactions",
+        "Connect",
+        "Speak"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "📌 START HERE",
+      "position": 1,
+      "permissions": {
+        "@everyone": {
+          "allow": ["ViewChannel", "ReadMessageHistory"],
+          "deny": ["SendMessages", "AddReactions"]
+        }
+      },
+      "channels": [
+        {
+          "name": "welcome",
+          "type": "text",
+          "topic": "Welcome to Dead Lead Society - Where Dead Leads Get a Second Chance.",
+          "position": 1
+        },
+        {
+          "name": "rules",
+          "type": "text",
+          "topic": "Community guidelines and operational rules for Dead Lead Society.",
+          "position": 2
+        },
+        {
+          "name": "announcements",
+          "type": "text",
+          "topic": "Official announcements, updates, and community alerts.",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "name": "📊 ︱ INDUSTRIAL NEWS ROOM",
+      "position": 2,
+      "permissions": {
+        "@everyone": {
+          "deny": ["ViewChannel"]
+        },
+        "Community Member": {
+          "allow": ["ViewChannel", "ReadMessageHistory", "AddReactions"],
+          "deny": ["SendMessages"]
+        },
+        "Lead Specialist": {
+          "allow": ["ViewChannel", "ReadMessageHistory", "AddReactions"],
+          "deny": ["SendMessages"]
+        }
+      },
+      "channels": [
+        {
+          "name": "daily-top-30",
+          "type": "text",
+          "topic": "Daily Top 30 High-Ticket B2B Verticals Matrix ranked by volatility, contract value & buying catalysts.",
+          "position": 1
+        },
+        {
+          "name": "macro-market-trends",
+          "type": "text",
+          "topic": "US/UK/CA/AU B2B capital allocation, corporate liquidity, DSO cash flow cycles & CFO sentiment.",
+          "position": 2
+        },
+        {
+          "name": "apex-outreach-picks",
+          "type": "text",
+          "topic": "The Apex Triad: Top 3 attack verticals of the day, C-level decision-maker personas & contract velocity.",
+          "position": 3
+        },
+        {
+          "name": "weaponized-playbooks",
+          "type": "text",
+          "topic": "Ready-to-deploy cold email/DM hooks, objection demolition & 9-word dead lead revival scripts.",
+          "position": 4
+        },
+        {
+          "name": "industrial-news-room",
+          "type": "text",
+          "topic": "Global Tier-1 Multi-Part Industrial Intelligence, Volatility Radars & Master Consolidated Dossier.",
+          "position": 5
+        },
+        {
+          "name": "seller-decision-room",
+          "type": "text",
+          "topic": "Strategy war-room for online service sellers & agency owners to plan outreach and share campaign metrics.",
+          "position": 6,
+          "permissions": {
+            "Community Member": {
+              "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+            },
+            "Lead Specialist": {
+              "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "💬 THE SOCIETY",
+      "position": 3,
+      "permissions": {
+        "@everyone": {
+          "deny": ["ViewChannel"]
+        },
+        "Community Member": {
+          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        },
+        "Lead Specialist": {
+          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        }
+      },
+      "channels": [
+        {
+          "name": "general-discussion",
+          "type": "text",
+          "topic": "General chat, voice notes, media sharing, and community discussions.",
+          "position": 1
+        },
+        {
+          "name": "intros-and-networking",
+          "type": "text",
+          "topic": "Mandatory 24h introduction channel. Introduce yourself to unlock full society access!",
+          "position": 2,
+          "permissions": {
+            "@everyone": {
+              "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "💼 LEAD REVIVAL",
+      "position": 4,
+      "permissions": {
+        "@everyone": {
+          "deny": ["ViewChannel"]
+        },
+        "Community Member": {
+          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        },
+        "Lead Specialist": {
+          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        }
+      },
+      "channels": [
+        {
+          "name": "lead-strategies",
+          "type": "text",
+          "topic": "Strategies, revival workflows, and outreach playbooks.",
+          "position": 1
+        },
+        {
+          "name": "deal-room",
+          "type": "forum",
+          "topic": "Forum threads for specific dead leads, post-mortems, and revival opportunities.",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "name": "🔊 VOICE LOUNGE",
+      "position": 5,
+      "permissions": {
+        "@everyone": {
+          "deny": ["ViewChannel"]
+        },
+        "Community Member": {
+          "allow": ["ViewChannel", "Connect", "Speak", "SendVoiceMessages"]
+        },
+        "Lead Specialist": {
+          "allow": ["ViewChannel", "Connect", "Speak", "SendVoiceMessages"]
+        }
+      },
+      "channels": [
+        {
+          "name": "Community Lounge",
+          "type": "voice",
+          "position": 1
+        },
+        {
+          "name": "Strategy Session",
+          "type": "voice",
+          "position": 2
+        }
+      ]
+    }
+  ]
+}
