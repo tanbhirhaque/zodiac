@@ -1,6 +1,6 @@
 const { ChannelType } = require('discord.js');
 const logger = require('../utils/logger');
-const { CHANNEL_TYPE_MAP, CHANNEL_TYPE_NAME } = require('../utils/helpers');
+const { CHANNEL_TYPE_MAP, CHANNEL_TYPE_NAME, channelMatches } = require('../utils/helpers');
 const permissionManager = require('./permissionManager');
 
 /**
@@ -9,7 +9,7 @@ const permissionManager = require('./permissionManager');
  */
 class ChannelManager {
   /**
-   * Find an existing category by name (case-insensitive)
+   * Find an existing category by name (case-insensitive or normalized)
    *
    * @param {import('discord.js').Guild} guild
    * @param {string} name
@@ -19,7 +19,10 @@ class ChannelManager {
     if (!guild || !name) return null;
     const normalized = name.trim().toLowerCase();
     return guild.channels.cache.find(
-      c => c.type === ChannelType.GuildCategory && c.name.toLowerCase() === normalized
+      c => c.type === ChannelType.GuildCategory && (
+        c.name.toLowerCase() === normalized ||
+        channelMatches(c.name, name)
+      )
     ) || null;
   }
 
@@ -49,7 +52,7 @@ class ChannelManager {
         ? c.name.toLowerCase().replace(/\s+/g, '-')
         : c.name.toLowerCase();
 
-      return channelName === normalizedTarget;
+      return channelName === normalizedTarget || channelMatches(c.name, name);
     }) || null;
   }
 
@@ -96,8 +99,18 @@ class ChannelManager {
 
     if (existing) {
       logger.channel(`Found existing category: "${existing.name}" (ID: ${existing.id})`);
-      if (!dryRun && permissionOverwrites && permissionOverwrites.length > 0) {
-        await permissionManager.updateChannelOverwritesSafely(existing, permissionOverwrites);
+      if (!dryRun) {
+        if (existing.name !== categoryConfig.name) {
+          try {
+            await existing.setName(categoryConfig.name, 'Dead Lead Society Server Setup: Sync formatting');
+            logger.channel(`Renamed category "${existing.name}" -> "${categoryConfig.name}"`);
+          } catch (nameErr) {
+            logger.warn(`Could not rename category "${existing.name}": ${nameErr.message}`);
+          }
+        }
+        if (permissionOverwrites && permissionOverwrites.length > 0) {
+          await permissionManager.updateChannelOverwritesSafely(existing, permissionOverwrites);
+        }
       }
       return { category: existing, created: false };
     }
@@ -144,31 +157,38 @@ class ChannelManager {
    * @returns {Promise<{ channel: import('discord.js').GuildChannel|null, created: boolean, error?: string }>}
    */
   async getOrCreateChannel(guild, channelConfig, categoryId = null, permissionOverwrites = [], { dryRun = false } = {}) {
-    const channelType = CHANNEL_TYPE_MAP[channelConfig.type ? channelConfig.type.toLowerCase() : 'text'] || ChannelType.GuildText;
-    const typeLabel = CHANNEL_TYPE_NAME[channelType] || 'Channel';
+    let channelType = CHANNEL_TYPE_MAP[channelConfig.type ? channelConfig.type.toLowerCase() : 'text'] || ChannelType.GuildText;
+    let typeLabel = CHANNEL_TYPE_NAME[channelType] || 'Channel';
 
-    // First check under the target category
+    // Check under the target category (also check GuildText fallback if seeking GuildForum)
     let existing = this.findChannelByNameAndType(guild, channelConfig.name, channelType, categoryId);
-
-    // If not found in this category, check if it exists elsewhere in the guild to move/re-parent it
-    if (!existing) {
-      existing = this.findChannelByNameAndType(guild, channelConfig.name, channelType, null);
-      if (existing && categoryId && existing.parentId !== categoryId) {
-        if (!dryRun) {
-          try {
-            await existing.setParent(categoryId, { lockPermissions: false });
-            logger.channel(`Moved existing channel #${existing.name} into target category (ID: ${categoryId})`);
-          } catch (moveErr) {
-            logger.warn(`Could not move #${existing.name} into new category: ${moveErr.message}`);
-          }
-        }
-      }
+    if (!existing && channelType === ChannelType.GuildForum) {
+      existing = this.findChannelByNameAndType(guild, channelConfig.name, ChannelType.GuildText, categoryId);
     }
 
     if (existing) {
       logger.channel(`Found existing ${typeLabel.toLowerCase()} channel: #${existing.name} (ID: ${existing.id})`);
-      if (!dryRun && permissionOverwrites && permissionOverwrites.length > 0) {
-        await permissionManager.updateChannelOverwritesSafely(existing, permissionOverwrites);
+      if (!dryRun) {
+        if (existing.name !== channelConfig.name) {
+          try {
+            await existing.setName(channelConfig.name, 'Dead Lead Society Server Setup: Sync emoji formatting');
+            logger.channel(`Renamed channel #${existing.name} -> #${channelConfig.name}`);
+          } catch (nameErr) {
+            logger.warn(`Could not rename channel #${existing.name}: ${nameErr.message}`);
+          }
+        }
+        if (permissionOverwrites && permissionOverwrites.length > 0) {
+          await permissionManager.updateChannelOverwritesSafely(existing, permissionOverwrites);
+        }
+        // Sync topic if channel supports it and topic differs
+        if (channelConfig.topic && existing.topic !== channelConfig.topic && typeof existing.setTopic === 'function') {
+          try {
+            await existing.setTopic(channelConfig.topic);
+            logger.channel(`Updated topic for #${existing.name}`);
+          } catch (topicErr) {
+            logger.warn(`Could not update topic for #${existing.name}: ${topicErr.message}`);
+          }
+        }
       }
       return { channel: existing, created: false };
     }
@@ -192,11 +212,34 @@ class ChannelManager {
         createOptions.topic = channelConfig.topic;
       }
 
+      // Configure Forum tags if channel is a Forum
+      if (channelType === ChannelType.GuildForum && Array.isArray(channelConfig.tags)) {
+        createOptions.availableTags = channelConfig.tags.map(t => ({
+          name: typeof t === 'string' ? t.slice(0, 20) : t.name.slice(0, 20),
+          moderated: false
+        }));
+      }
+
       if (permissionOverwrites.length > 0) {
         createOptions.permissionOverwrites = permissionOverwrites;
       }
 
-      const created = await guild.channels.create(createOptions);
+      let created;
+      try {
+        created = await guild.channels.create(createOptions);
+      } catch (createErr) {
+        // Fallback: If creating a Forum fails (e.g. Community not enabled), fallback to Text channel
+        if (channelType === ChannelType.GuildForum) {
+          logger.warn(`Failed to create Forum #${channelConfig.name} (${createErr.message}). Falling back to Text channel.`);
+          createOptions.type = ChannelType.GuildText;
+          delete createOptions.availableTags;
+          created = await guild.channels.create(createOptions);
+          typeLabel = 'Text (Forum Fallback)';
+        } else {
+          throw createErr;
+        }
+      }
+
       logger.channel(`Created ${typeLabel.toLowerCase()} channel: #${created.name} (ID: ${created.id})`);
       return { channel: created, created: true };
     } catch (error) {

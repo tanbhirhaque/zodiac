@@ -127,6 +127,41 @@ function resolvePermissionBit(permName) {
   return null;
 }
 
+/**
+ * Normalize channel or category name for fuzzy/clean matching (removes emojis, symbols, spaces)
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+function normalizeChannelName(name) {
+  if (!name) return '';
+  return name
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s\-_]/gu, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Check if a channel name matches a target identifier (handles emoji prefixes like 👋・welcome)
+ *
+ * @param {string} channelName
+ * @param {string} targetName
+ * @returns {boolean}
+ */
+function channelMatches(channelName, targetName) {
+  if (!channelName || !targetName) return false;
+  const nChan = normalizeChannelName(channelName);
+  const nTarget = normalizeChannelName(targetName);
+  return (
+    nChan === nTarget ||
+    nChan.endsWith(nTarget) ||
+    nChan.endsWith(`-${nTarget}`) ||
+    nTarget.endsWith(nChan) ||
+    nTarget.endsWith(`-${nChan}`)
+  );
+}
+
 module.exports = {
   BRAND,
   CHANNEL_TYPE_MAP,
@@ -134,5 +169,7 @@ module.exports = {
   hasAdminPermissions,
   checkBotPermissions,
   createBrandedEmbed,
-  resolvePermissionBit
+  resolvePermissionBit,
+  normalizeChannelName,
+  channelMatches
 };

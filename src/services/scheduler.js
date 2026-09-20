@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const { ChannelType } = require('discord.js');
 const logger = require('../utils/logger');
 const newsService = require('./newsService');
-const { createBrandedEmbed, BRAND } = require('../utils/helpers');
+const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
 const { config } = require('../config');
 
 function resolveSafeTimezone(tz) {
@@ -36,7 +36,10 @@ class SchedulerService {
     if (!guild || !channelName) return null;
     const target = channelName.trim().toLowerCase().replace(/\s+/g, '-');
     return guild.channels.cache.find(
-      c => c.type === ChannelType.GuildText && c.name.toLowerCase().replace(/\s+/g, '-') === target
+      c => c.type === ChannelType.GuildText && (
+        c.name.toLowerCase().replace(/\s+/g, '-') === target ||
+        channelMatches(c.name, target)
+      )
     ) || null;
   }
 
@@ -76,14 +79,14 @@ class SchedulerService {
 
       const updatedChannels = [];
 
-      // Look up specialized channels for online service sellers
-      const macroChan = this.findChannelByName(guild, 'macro-market-trends');
-      const top30Chan = this.findChannelByName(guild, 'daily-top-30');
-      const apexChan = this.findChannelByName(guild, 'apex-outreach-picks');
-      const playbookChan = this.findChannelByName(guild, 'weaponized-playbooks');
-      const masterChan = this.findChannelByName(guild, 'industrial-news-room');
+      // Look up specialized channels in the new architecture
+      const macroChan = this.findChannelByName(guild, 'market-trends') || this.findChannelByName(guild, 'macro-market-trends');
+      const top30Chan = this.findChannelByName(guild, 'niche-selection') || this.findChannelByName(guild, 'daily-top-30');
+      const apexChan = this.findChannelByName(guild, 'demand-signals') || this.findChannelByName(guild, 'apex-outreach-picks');
+      const playbookChan = this.findChannelByName(guild, 'message-frameworks') || this.findChannelByName(guild, 'weaponized-playbooks');
+      const masterChan = this.findChannelByName(guild, 'market-research') || this.findChannelByName(guild, 'industrial-news-room');
 
-      // 1. Dispatch Part 1 to #macro-market-trends
+      // 1. Dispatch Part 1 to #market-trends
       if (macroChan && embeds[0]) {
         try {
           await macroChan.send({ embeds: [embeds[0]] });
@@ -93,7 +96,7 @@ class SchedulerService {
         }
       }
 
-      // 2. Dispatch Part 2 & Part 3 to #daily-top-30
+      // 2. Dispatch Part 2 & Part 3 to #niche-selection
       if (top30Chan) {
         try {
           if (embeds[1]) await top30Chan.send({ embeds: [embeds[1]] });
@@ -107,7 +110,7 @@ class SchedulerService {
         }
       }
 
-      // 3. Dispatch Part 4 to #apex-outreach-picks
+      // 3. Dispatch Part 4 to #demand-signals
       if (apexChan && embeds[3]) {
         try {
           await apexChan.send({ embeds: [embeds[3]] });
@@ -117,7 +120,7 @@ class SchedulerService {
         }
       }
 
-      // 4. Dispatch Part 5 to #weaponized-playbooks
+      // 4. Dispatch Part 5 to #message-frameworks
       if (playbookChan && embeds[4]) {
         try {
           await playbookChan.send({ embeds: [embeds[4]] });
@@ -127,24 +130,7 @@ class SchedulerService {
         }
       }
 
-      // 5. Dispatch full 5-part master briefing to #industrial-news-room
-      if (masterChan) {
-        try {
-          for (let i = 0; i < embeds.length; i++) {
-            await masterChan.send({ embeds: [embeds[i]] });
-            if (i < embeds.length - 1) {
-              await new Promise(r => setTimeout(r, 500));
-            }
-          }
-          if (!updatedChannels.includes(masterChan.name)) {
-            updatedChannels.push(masterChan.name);
-          }
-        } catch (chanErr) {
-          logger.error(`Failed to dispatch master briefing to #${masterChan.name}: ${chanErr.message}`);
-        }
-      }
-
-      // 6. Dispatch High-Urgency Niche Decision Alert to #announcements
+      // 5. Dispatch High-Urgency Niche Decision Alert to #announcements
       const announcementsChan = this.findChannelByName(guild, 'announcements');
       if (announcementsChan) {
         try {
@@ -152,21 +138,22 @@ class SchedulerService {
           const top30 = newsService.getRankedTop30Niches();
           const apexTop3 = top30.slice(0, 3);
           const top3Badges = apexTop3.map(n => `**#${n.rank} ${n.name}** [${n.avgDealSize}]`).join('\n• ');
-          const decisionChan = this.findChannelByName(guild, 'seller-decision-room');
+          const deadLeadsChan = this.findChannelByName(guild, 'dead-leads');
 
           const alertEmbed = createBrandedEmbed({
             title: `⚡ IMMEDIATE NICHE OPPORTUNITY ALERT (${timeLabel})`,
             description: [
-              `Today's fresh Tier-1 market intelligence and **Daily Top 30 Matrix** have dropped across the **📊 ︱ INDUSTRIAL NEWS ROOM**.`,
+              `Today's fresh Tier-1 market intelligence and **Daily Top 30 Matrix** have dropped across **THE OPEN SOCIETY** laboratories.`,
               '',
               `🔥 **Today's Highest-Probability Attack Verticals (Apex Triad)**:`,
               `• ${top3Badges}`,
               '',
               `🎯 **SERVICE SELLER MOBILIZATION PROTOCOL**:`,
               `If your agency, technical service, or lead generation expertise aligns with today's top niches, **make your decision and mobilize immediately**!\n`,
-              `• **1. Review Urgent Catalysts**: Check real-time buying triggers in ${top30Chan ? `<#${top30Chan.id}>` : '`#daily-top-30`'} & ${apexChan ? `<#${apexChan.id}>` : '`#apex-outreach-picks`'}.`,
-              `• **2. Deploy Ready-To-Use Hooks**: Grab cold email copy and 9-word dead lead revival scripts in ${playbookChan ? `<#${playbookChan.id}>` : '`#weaponized-playbooks`'}.`,
-              `• **3. War-Room Strategy**: Hop into ${decisionChan ? `<#${decisionChan.id}>` : '`#seller-decision-room`'} to coordinate angles with fellow sellers.\n`,
+              `• **1. Macro & Catalysts**: Check real-time buying triggers in ${macroChan ? `<#${macroChan.id}>` : '`#market-trends`'} & ${apexChan ? `<#${apexChan.id}>` : '`#demand-signals`'}.`,
+              `• **2. Niche Matrix**: View today's 30 ranked verticals in ${top30Chan ? `<#${top30Chan.id}>` : '`#niche-selection`'}.`,
+              `• **3. Ready-To-Use Hooks**: Grab cold email copy and 9-word revival scripts in ${playbookChan ? `<#${playbookChan.id}>` : '`#message-frameworks`'}.`,
+              `• **4. Stalled Lead Revive**: Post unresponsive accounts for diagnosis in ${deadLeadsChan ? `<#${deadLeadsChan.id}>` : '`#dead-leads`'}.\n`,
               `*Corporate budget windows in Tier-1 markets close quickly. Strike while decision-maker buying urgency is at its peak!*`
             ].join('\n'),
             color: 0xE67E22

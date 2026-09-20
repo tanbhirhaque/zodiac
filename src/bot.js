@@ -62,9 +62,9 @@ client.once(Events.ClientReady, () => {
   // Set rich presence
   client.user.setPresence({
     activities: [{
-      name: 'Reviving Dead Leads | /news',
+      name: 'Zodiac | Reviving Dead Leads',
       type: ActivityType.Custom,
-      state: 'Reviving Dead Leads | /news'
+      state: 'Zodiac | Reviving Dead Leads'
     }],
     status: 'online'
   });

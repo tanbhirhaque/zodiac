@@ -5,8 +5,17 @@
   },
   "roles": [
     {
-      "name": "Admin",
-      "color": "#E74C3C",
+      "name": "Founder",
+      "color": "#D4AF37",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": [
+        "Administrator"
+      ]
+    },
+    {
+      "name": "Moderator",
+      "color": "#2980B9",
       "hoist": true,
       "mentionable": true,
       "permissions": [
@@ -25,24 +34,8 @@
       ]
     },
     {
-      "name": "Moderator",
-      "color": "#3498DB",
-      "hoist": true,
-      "mentionable": true,
-      "permissions": [
-        "ManageMessages",
-        "KickMembers",
-        "MuteMembers",
-        "DeafenMembers",
-        "MoveMembers",
-        "ViewChannel",
-        "SendMessages",
-        "ReadMessageHistory"
-      ]
-    },
-    {
-      "name": "Lead Specialist",
-      "color": "#F1C40F",
+      "name": "Inner Circle",
+      "color": "#8E44AD",
       "hoist": true,
       "mentionable": false,
       "permissions": [
@@ -57,8 +50,8 @@
       ]
     },
     {
-      "name": "Community Member",
-      "color": "#95A5A6",
+      "name": "Society Member",
+      "color": "#7F8C8D",
       "hoist": false,
       "mentionable": false,
       "permissions": [
@@ -75,185 +68,1970 @@
   ],
   "categories": [
     {
-      "name": "📌 START HERE",
+      "name": "🚪 ┃ START HERE",
       "position": 1,
       "permissions": {
         "@everyone": {
-          "allow": ["ViewChannel", "ReadMessageHistory"],
-          "deny": ["SendMessages", "AddReactions"]
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "AddReactions"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "AddReactions"
+          ]
+        },
+        "Moderator": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        "Founder": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
         }
       },
       "channels": [
         {
-          "name": "welcome",
+          "name": "👋・welcome",
           "type": "text",
-          "topic": "Welcome to Dead Lead Society - Where Dead Leads Get a Second Chance.",
+          "topic": "[ONBOARDING] Welcome to Dead Lead Society. Institutional overview of our mission, client acquisition lifecycle, and community tiers.",
           "position": 1
         },
         {
-          "name": "rules",
+          "name": "📜・rules",
           "type": "text",
-          "topic": "Community guidelines and operational rules for Dead Lead Society.",
+          "topic": "[ONBOARDING] Community guidelines, operational protocols, confidentiality standards, and zero-tolerance conduct policies.",
           "position": 2
         },
         {
-          "name": "announcements",
+          "name": "⚙️・how-the-society-works",
           "type": "text",
-          "topic": "Official announcements, updates, and community alerts.",
-          "position": 3
-        }
-      ]
-    },
-    {
-      "name": "📊 ︱ INDUSTRIAL NEWS ROOM",
-      "position": 2,
-      "permissions": {
-        "@everyone": {
-          "deny": ["ViewChannel"]
-        },
-        "Community Member": {
-          "allow": ["ViewChannel", "ReadMessageHistory", "AddReactions"],
-          "deny": ["SendMessages"]
-        },
-        "Lead Specialist": {
-          "allow": ["ViewChannel", "ReadMessageHistory", "AddReactions"],
-          "deny": ["SendMessages"]
-        }
-      },
-      "channels": [
-        {
-          "name": "daily-top-30",
-          "type": "text",
-          "topic": "Daily Top 30 High-Ticket B2B Verticals Matrix ranked by volatility, contract value & buying catalysts.",
-          "position": 1
-        },
-        {
-          "name": "macro-market-trends",
-          "type": "text",
-          "topic": "US/UK/CA/AU B2B capital allocation, corporate liquidity, DSO cash flow cycles & CFO sentiment.",
-          "position": 2
-        },
-        {
-          "name": "apex-outreach-picks",
-          "type": "text",
-          "topic": "The Apex Triad: Top 3 attack verticals of the day, C-level decision-maker personas & contract velocity.",
+          "topic": "[ONBOARDING] How the society operates: free vs paid access, standard resource-post formatting, and community rhythms.",
           "position": 3
         },
         {
-          "name": "weaponized-playbooks",
+          "name": "🗺️・server-map",
           "type": "text",
-          "topic": "Ready-to-deploy cold email/DM hooks, objection demolition & 9-word dead lead revival scripts.",
+          "topic": "[ONBOARDING] Complete architectural map of the client acquisition lifecycle and the dead lead reanimation loop.",
           "position": 4
         },
         {
-          "name": "industrial-news-room",
+          "name": "💬・introductions",
           "type": "text",
-          "topic": "Global Tier-1 Multi-Part Industrial Intelligence, Volatility Radars & Master Consolidated Dossier.",
+          "topic": "[ONBOARDING] Introduce yourself within 24 hours (Name, Agency/Business, Core Service, Target Niches) to unlock the full Open Society.",
+          "position": 5,
+          "permissions": {
+            "@everyone": {
+              "allow": [
+                "ViewChannel",
+                "SendMessages",
+                "ReadMessageHistory",
+                "AddReactions"
+              ]
+            },
+            "Society Member": {
+              "allow": [
+                "ViewChannel",
+                "SendMessages",
+                "ReadMessageHistory",
+                "AddReactions"
+              ]
+            },
+            "Inner Circle": {
+              "allow": [
+                "ViewChannel",
+                "SendMessages",
+                "ReadMessageHistory",
+                "AddReactions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "📢・announcements",
+          "type": "text",
+          "topic": "[ONBOARDING] Official institutional announcements, system updates, and society-wide intelligence notices.",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "name": "🧭 ┃ MARKET INTELLIGENCE",
+      "position": 2,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Moderator": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        "Founder": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "📊・market-research",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Macro research methodologies, industry market sizing, and addressable market analysis.",
+          "position": 1
+        },
+        {
+          "name": "🏢・industry-research",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Deep-dive vertical breakdowns, regulatory shifts, and economic tailwinds across B2B sectors.",
+          "position": 2
+        },
+        {
+          "name": "📈・market-trends",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Emerging commercial trends, technology adoption curves, and corporate buying cycles.",
+          "position": 3
+        },
+        {
+          "name": "🕳️・market-gaps",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Unserved niches, vendor inefficiencies, and commercial whitespace for service positioning.",
+          "position": 4
+        },
+        {
+          "name": "🕵️・competitor-intelligence",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Analyzing incumbent weaknesses, positioning vulnerabilities, and counter-offer strategies.",
           "position": 5
         },
         {
-          "name": "seller-decision-room",
+          "name": "⚡・demand-signals",
           "type": "text",
-          "topic": "Strategy war-room for online service sellers & agency owners to plan outreach and share campaign metrics.",
-          "position": 6,
-          "permissions": {
-            "Community Member": {
-              "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
-            },
-            "Lead Specialist": {
-              "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
-            }
-          }
+          "topic": "[OPEN SOCIETY] Macroeconomic indicators, commercial capital flows, and sector-wide spending momentum.",
+          "position": 6
         }
       ]
     },
     {
-      "name": "💬 THE SOCIETY",
+      "name": "🎯 ┃ ICP LAB",
       "position": 3,
       "permissions": {
         "@everyone": {
-          "deny": ["ViewChannel"]
+          "deny": [
+            "ViewChannel"
+          ]
         },
-        "Community Member": {
-          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
         },
-        "Lead Specialist": {
-          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
         }
       },
       "channels": [
         {
-          "name": "general-discussion",
+          "name": "📐・icp-framework",
           "type": "text",
-          "topic": "General chat, voice notes, media sharing, and community discussions.",
+          "topic": "[OPEN SOCIETY] Systematic frameworks for defining Ideal Customer Profiles beyond basic demographics.",
           "position": 1
         },
         {
-          "name": "intros-and-networking",
+          "name": "🔍・icp-research",
           "type": "text",
-          "topic": "Mandatory 24h introduction channel. Introduce yourself to unlock full society access!",
-          "position": 2,
-          "permissions": {
-            "@everyone": {
-              "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
-            }
-          }
+          "topic": "[OPEN SOCIETY] Investigating account characteristics, corporate maturity, and buying power.",
+          "position": 2
+        },
+        {
+          "name": "🎯・niche-selection",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Evaluating vertical viability, profit margins, and sales velocity across candidate markets.",
+          "position": 3
+        },
+        {
+          "name": "🧩・account-fit",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Scoring criteria to determine if a target account matches your high-probability profile.",
+          "position": 4
+        },
+        {
+          "name": "📑・icp-case-studies",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Real-world breakdowns of successful ICP transitions and targeting pivots.",
+          "position": 5
+        },
+        {
+          "name": "🗂️・icp-resources",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Templates, scoring worksheets, and account qualification matrices.",
+          "position": 6
         }
       ]
     },
     {
-      "name": "💼 LEAD REVIVAL",
+      "name": "👤 ┃ BUYER INTELLIGENCE",
       "position": 4,
       "permissions": {
         "@everyone": {
-          "deny": ["ViewChannel"]
+          "deny": [
+            "ViewChannel"
+          ]
         },
-        "Community Member": {
-          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
         },
-        "Lead Specialist": {
-          "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "EmbedLinks", "AttachFiles", "AddReactions", "SendVoiceMessages"]
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
         }
       },
       "channels": [
         {
-          "name": "lead-strategies",
+          "name": "👤・buyer-persona",
           "type": "text",
-          "topic": "Strategies, revival workflows, and outreach playbooks.",
+          "topic": "[OPEN SOCIETY] Deconstructing the professional background, priorities, and pressures of key personas.",
           "position": 1
         },
         {
-          "name": "deal-room",
-          "type": "forum",
-          "topic": "Forum threads for specific dead leads, post-mortems, and revival opportunities.",
+          "name": "👔・decision-makers",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Mapping authority levels, budgetary ownership, and final sign-off protocols.",
           "position": 2
+        },
+        {
+          "name": "👥・buying-committee",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Navigating multi-stakeholder deals: Champions, Economic Buyers, and Technical Evaluators.",
+          "position": 3
+        },
+        {
+          "name": "🧠・buyer-psychology",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Cognitive biases, risk aversion, career incentives, and executive purchasing psychology.",
+          "position": 4
+        },
+        {
+          "name": "🩹・pain-points",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Identifying latent vs. active business pain and quantifiable operational bottlenecks.",
+          "position": 5
+        },
+        {
+          "name": "🎯・jobs-to-be-done",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Understanding the core functional, emotional, and social jobs buyers hire solutions to achieve.",
+          "position": 6
+        },
+        {
+          "name": "🔍・buyer-research",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Tools, interview techniques, and intelligence gathering on target executive profiles.",
+          "position": 7
         }
       ]
     },
     {
-      "name": "🔊 VOICE LOUNGE",
+      "name": "🔬 ┃ RESEARCH LAB",
       "position": 5,
       "permissions": {
         "@everyone": {
-          "deny": ["ViewChannel"]
+          "deny": [
+            "ViewChannel"
+          ]
         },
-        "Community Member": {
-          "allow": ["ViewChannel", "Connect", "Speak", "SendVoiceMessages"]
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
         },
-        "Lead Specialist": {
-          "allow": ["ViewChannel", "Connect", "Speak", "SendVoiceMessages"]
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
         }
       },
       "channels": [
         {
-          "name": "Community Lounge",
+          "name": "🏢・company-research",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Extracting actionable insights from corporate filings, press releases, and earnings calls.",
+          "position": 1
+        },
+        {
+          "name": "👤・prospect-research",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Individual stakeholder profiling, career history, and communication preferences.",
+          "position": 2
+        },
+        {
+          "name": "🌐・website-intelligence",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Auditing tech stacks, pricing models, hiring pages, and messaging changes.",
+          "position": 3
+        },
+        {
+          "name": "💼・linkedin-intelligence",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Mining executive activity, commentary, organizational changes, and mutual connections.",
+          "position": 4
+        },
+        {
+          "name": "📱・social-intelligence",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Extracting prospect sentiment, podcast interviews, conference talks, and public posts.",
+          "position": 5
+        },
+        {
+          "name": "💻・technology-intelligence",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Analyzing technographic data, software migrations, and architectural vulnerabilities.",
+          "position": 6
+        },
+        {
+          "name": "🕵️・competitor-research",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Scouting competitor customer bases, churn risks, and dissatisfaction indicators.",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "name": "🛰️ ┃ SIGNAL INTELLIGENCE",
+      "position": 6,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "⚡・buying-signals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Detecting observable corporate events that correlate with imminent purchasing decisions.",
+          "position": 1
+        },
+        {
+          "name": "🎯・intent-signals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] First-party and third-party intent data, surge topics, and category evaluation.",
+          "position": 2
+        },
+        {
+          "name": "🚀・hiring-signals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Headcount growth, specific job openings, and organizational restructuring triggers.",
+          "position": 3
+        },
+        {
+          "name": "💰・funding-signals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Capital raises, private equity acquisitions, and balance sheet expansion events.",
+          "position": 4
+        },
+        {
+          "name": "🚀・expansion-signals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Geographic launches, new service rollouts, and office expansions signaling budget.",
+          "position": 5
+        },
+        {
+          "name": "♟️・leadership-changes",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] New CXO/VP appointments with mandates to overhaul legacy vendors within 90 days.",
+          "position": 6
+        },
+        {
+          "name": "🔄・technology-signals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] New tool adoptions, legacy vendor cancellations, and integration challenges.",
+          "position": 7
+        },
+        {
+          "name": "💥・trigger-events",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Regulatory deadlines, legal mandates, and industry disruptions requiring rapid action.",
+          "position": 8
+        }
+      ]
+    },
+    {
+      "name": "🧲 ┃ LEAD FACTORY",
+      "position": 7,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "⛏️・lead-sourcing",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Methods for building high-intent prospect pools across public and proprietary sources.",
+          "position": 1
+        },
+        {
+          "name": "🧲・lead-generation",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] End-to-end outbound pipeline generation strategies and daily workflow architecture.",
+          "position": 2
+        },
+        {
+          "name": "✨・lead-enrichment",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Appending verified contact details, firmographics, and technographics to raw leads.",
+          "position": 3
+        },
+        {
+          "name": "🎯・lead-qualification",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Rigorous filtering to eliminate low-probability prospects before outreach expenditure.",
+          "position": 4
+        },
+        {
+          "name": "📊・lead-scoring",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Quantitative models for ranking leads by engagement probability and deal potential.",
+          "position": 5
+        },
+        {
+          "name": "📋・account-lists",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Building and structuring tiered target account lists (Tier 1, Tier 2, Tier 3).",
+          "position": 6
+        },
+        {
+          "name": "🔍・contact-finding",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Sourcing direct phone lines, verified work emails, and mobile numbers with high deliverability.",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "name": "🗣️ ┃ OUTREACH LAB",
+      "position": 8,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "✉️・cold-email",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] High-deliverability cold email infrastructure, domain warming, and inbox placement.",
+          "position": 1
+        },
+        {
+          "name": "💼・linkedin-outreach",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Direct connection strategies, conversational touchpoints, and executive InMail sequences.",
+          "position": 2
+        },
+        {
+          "name": "💬・social-dm",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Navigating X/Twitter, Instagram, and community messaging for direct executive access.",
+          "position": 3
+        },
+        {
+          "name": "📞・cold-calling",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Phone outreach frameworks, gatekeeper navigation, and live call execution.",
+          "position": 4
+        },
+        {
+          "name": "🎥・video-outreach",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Custom video audits, personalized screen-shares, and asynchronous presentation tactics.",
+          "position": 5
+        },
+        {
+          "name": "🎁・referral-outreach",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Systematic referral generation from existing networks, past clients, and industry partners.",
+          "position": 6
+        },
+        {
+          "name": "🤝・warm-introduction",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Leveraging mutual connections, advisory boards, and investor networks for warm intros.",
+          "position": 7
+        },
+        {
+          "name": "🌐・networking",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Strategic community participation, conference outreach, and relationship architecture.",
+          "position": 8
+        }
+      ]
+    },
+    {
+      "name": "🧪 ┃ MESSAGE LAB",
+      "position": 9,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🪝・opening-lines",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] High-relevance hooks, observation patterns, and non-generic conversational openers.",
+          "position": 1
+        },
+        {
+          "name": "🎨・personalization",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Dynamic personalization frameworks balancing scalability with genuine executive relevance.",
+          "position": 2
+        },
+        {
+          "name": "📐・message-frameworks",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Core outbound formulas: Problem-Agitate-Solve, Before-After-Bridge, and Value-First.",
+          "position": 3
+        },
+        {
+          "name": "🔁・follow-ups",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Persistent, high-status follow-up sequences that add incremental value without desperation.",
+          "position": 4
+        },
+        {
+          "name": "🛡️・objection-handling",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Demolishing reflexive brush-offs ('Not interested', 'Send info', 'No budget') in messaging.",
+          "position": 5
+        },
+        {
+          "name": "🧪・message-testing",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] A/B testing subject lines, value propositions, and calls-to-action for statistical significance.",
+          "position": 6
+        },
+        {
+          "name": "🔬・outreach-experiments",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Documenting unconventional outreach tests, novel channels, and multi-touch workflows.",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "name": "🪦 ┃ THE GRAVEYARD",
+      "position": 10,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🪦・dead-leads",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Cataloging leads that have gone completely cold for structured forensic review.",
+          "position": 1,
+          "tags": [
+            "ICP",
+            "Buyer",
+            "Timing",
+            "Signal",
+            "Message",
+            "Offer",
+            "Trust",
+            "Price",
+            "Follow-up",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "👻・ghosted",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Deals and prospects that abruptly stopped responding after initial engagement.",
+          "position": 2,
+          "tags": [
+            "ICP",
+            "Buyer",
+            "Timing",
+            "Signal",
+            "Message",
+            "Offer",
+            "Trust",
+            "Price",
+            "Follow-up",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "🚫・rejected",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Explicit 'No' responses and disqualifications — documenting the cited reasons.",
+          "position": 3,
+          "tags": [
+            "ICP",
+            "Buyer",
+            "Timing",
+            "Signal",
+            "Message",
+            "Offer",
+            "Trust",
+            "Price",
+            "Follow-up",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "🔇・no-response",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Outreach sequences that generated zero opens or replies across all channels.",
+          "position": 4,
+          "tags": [
+            "ICP",
+            "Buyer",
+            "Timing",
+            "Signal",
+            "Message",
+            "Offer",
+            "Trust",
+            "Price",
+            "Follow-up",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "📉・failed-outreach",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Campaign post-mortems for outbound efforts that underperformed benchmark metrics.",
+          "position": 5,
+          "tags": [
+            "ICP",
+            "Buyer",
+            "Timing",
+            "Signal",
+            "Message",
+            "Offer",
+            "Trust",
+            "Price",
+            "Follow-up",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "📉・lost-deals",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Opportunities that made it to late-stage pipeline but closed lost to competitors or inaction.",
+          "position": 6,
+          "tags": [
+            "ICP",
+            "Buyer",
+            "Timing",
+            "Signal",
+            "Message",
+            "Offer",
+            "Trust",
+            "Price",
+            "Follow-up",
+            "Unknown"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "🩺 ┃ THE AUTOPSY",
+      "position": 11,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🩺・lead-autopsy",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] In-depth forensic examination of individual dead leads to pinpoint where alignment broke down.",
+          "position": 1,
+          "tags": [
+            "Diagnosis",
+            "Root Cause",
+            "Messaging Flaw",
+            "Wrong Timing",
+            "No Urgency",
+            "Price Objection",
+            "Internal Politics"
+          ]
+        },
+        {
+          "name": "📝・message-autopsy",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Critiquing underperforming copy, subject lines, and outreach scripts to identify flaws.",
+          "position": 2,
+          "tags": [
+            "Diagnosis",
+            "Root Cause",
+            "Messaging Flaw",
+            "Wrong Timing",
+            "No Urgency",
+            "Price Objection",
+            "Internal Politics"
+          ]
+        },
+        {
+          "name": "🏷️・offer-autopsy",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Diagnosing core value propositions that failed to generate buying urgency.",
+          "position": 3,
+          "tags": [
+            "Diagnosis",
+            "Root Cause",
+            "Messaging Flaw",
+            "Wrong Timing",
+            "No Urgency",
+            "Price Objection",
+            "Internal Politics"
+          ]
+        },
+        {
+          "name": "💬・conversation-autopsy",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Reviewing chat logs, email threads, and DM transcripts that stalled out.",
+          "position": 4,
+          "tags": [
+            "Diagnosis",
+            "Root Cause",
+            "Messaging Flaw",
+            "Wrong Timing",
+            "No Urgency",
+            "Price Objection",
+            "Internal Politics"
+          ]
+        },
+        {
+          "name": "🔍・deal-autopsy",
+          "type": "forum",
+          "topic": "[OPEN SOCIETY] Full post-mortem analysis of high-value proposals that failed to reach contract signing.",
+          "position": 5,
+          "tags": [
+            "Diagnosis",
+            "Root Cause",
+            "Messaging Flaw",
+            "Wrong Timing",
+            "No Urgency",
+            "Price Objection",
+            "Internal Politics"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "🤝 ┃ SALES & CLOSING",
+      "position": 12,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🎙️・discovery-call",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Diagnostic questioning frameworks, executive agenda setting, and uncovering core pain.",
+          "position": 1
+        },
+        {
+          "name": "🎯・qualification",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] MEDDPICC, BANT, and SPICED frameworks to protect closing bandwidth from bad-fit deals.",
+          "position": 2
+        },
+        {
+          "name": "💬・sales-conversation",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Structuring mid-stage commercial dialogue and maintaining high-status peer framing.",
+          "position": 3
+        },
+        {
+          "name": "📑・proposal",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Crafting compelling, outcome-based proposals and business cases that justify investment.",
+          "position": 4
+        },
+        {
+          "name": "🛡️・objection-handling",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Advanced frameworks for dissolving late-stage security, pricing, and timing objections.",
+          "position": 5
+        },
+        {
+          "name": "⚖️・negotiation",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Protecting contract value, payment terms, scope boundaries, and pricing integrity.",
+          "position": 6
+        },
+        {
+          "name": "🤝・closing",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Securing verbal commitment, navigating procurement, and executing commercial agreements.",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "name": "💰 ┃ CLIENT REVENUE",
+      "position": 13,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🚀・client-onboarding",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] The critical first 30 days: Time-to-Value, expectation setting, and early win delivery.",
+          "position": 1
+        },
+        {
+          "name": "🔒・client-retention",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Proactive client health monitoring, churn prevention, and recurring value demonstration.",
+          "position": 2
+        },
+        {
+          "name": "📈・upsell",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Expanding contract value with higher service tiers, increased volume, or dedicated support.",
+          "position": 3
+        },
+        {
+          "name": "🔀・cross-sell",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Introducing adjacent capabilities, new department expansion, and complementary services.",
+          "position": 4
+        },
+        {
+          "name": "📊・account-growth",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Strategic account planning to turn single-service engagements into enterprise partnerships.",
+          "position": 5
+        },
+        {
+          "name": "🔁・recurring-revenue",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Structuring retainers, recurring maintenance, and predictable annual contracts.",
+          "position": 6
+        },
+        {
+          "name": "🎁・referrals",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Engineered referral loops that turn satisfied clients into proactive growth evangelists.",
+          "position": 7
+        },
+        {
+          "name": "💎・lifetime-value",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Maximizing Net Revenue Retention (NRR) and lifetime commercial value per client.",
+          "position": 8
+        }
+      ]
+    },
+    {
+      "name": "📚 ┃ RESOURCE VAULT",
+      "position": 14,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "⚙️・outreach-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Verified software for multi-channel outreach, deliverability, and workflow automation. Follow standard template.",
+          "position": 1
+        },
+        {
+          "name": "🗄️・lead-databases",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] B2B contact repositories, verified intelligence platforms, and data scraping tools. Follow standard template.",
+          "position": 2
+        },
+        {
+          "name": "🛠️・research-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Platforms for deep account analysis, executive profiling, and market reconnaissance. Follow standard template.",
+          "position": 3
+        },
+        {
+          "name": "✉️・email-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Cold email sequencing, inbox rotation, SMTP infrastructure, and deliverability testers. Follow standard template.",
+          "position": 4
+        },
+        {
+          "name": "💼・linkedin-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Compliant LinkedIn automation, profile scraping, and network management platforms. Follow standard template.",
+          "position": 5
+        },
+        {
+          "name": "🗂️・crm-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Pipeline management systems, deal tracking software, and sales workflow hubs. Follow standard template.",
+          "position": 6
+        },
+        {
+          "name": "⚡・automation-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Make, Zapier, n8n, and custom scripts for automating pipeline operations. Follow standard template.",
+          "position": 7
+        },
+        {
+          "name": "🤖・ai-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] LLM prompts, AI research agents, and automated personalization engines. Follow standard template.",
+          "position": 8
+        },
+        {
+          "name": "🤝・sales-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Call recorders, conversation intelligence, proposal software, and e-signature tools. Follow standard template.",
+          "position": 9
+        },
+        {
+          "name": "📊・analytics-tools",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Tracking outreach conversion rates, pipeline velocity, and revenue analytics. Follow standard template.",
+          "position": 10
+        },
+        {
+          "name": "📄・templates",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Standardized outbound templates, cold email frameworks, and follow-up sequences. Follow standard template.",
+          "position": 11
+        },
+        {
+          "name": "📐・frameworks",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Institutional methodologies for discovery, closing, negotiation, and lead revival. Follow standard template.",
+          "position": 12
+        },
+        {
+          "name": "📚・books",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Essential reading on sales psychology, negotiation, enterprise deal-making, and strategy. Follow standard template.",
+          "position": 13
+        },
+        {
+          "name": "📑・research-papers",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Academic and industry whitepapers on B2B purchasing behavior and market trends. Follow standard template.",
+          "position": 14
+        },
+        {
+          "name": "🏆・case-studies",
+          "type": "text",
+          "topic": "[OPEN SOCIETY] Documented client acquisition wins, campaign breakdowns, and quantitative benchmarks. Follow standard template.",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "name": "👑 ┃ IC: LIVE RESEARCH LAB",
+      "position": 15,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        },
+        "Moderator": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        "Founder": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🔬・live-prospect-research",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Real-time collaborative research on high-priority live prospects.",
+          "position": 1
+        },
+        {
+          "name": "🏢・live-company-research",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Live teardowns of target enterprise accounts and buying committee mapping.",
+          "position": 2
+        },
+        {
+          "name": "👤・live-buyer-research",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Deep live profiling of specific target decision-makers.",
+          "position": 3
+        },
+        {
+          "name": "🛰️・signal-hunting",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Collaborative real-time scanning for breaking intent and expansion signals.",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "name": "👑 ┃ IC: LEAD BUILDING",
+      "position": 16,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🧲・lead-building",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Constructing high-precision, customized lead lists with proprietary filters.",
+          "position": 1
+        },
+        {
+          "name": "✨・lead-enrichment",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Advanced data enrichment workflows for maximum contact accuracy.",
+          "position": 2
+        },
+        {
+          "name": "📊・lead-scoring",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Custom lead scoring models calibrated to specific high-ticket offers.",
+          "position": 3
+        },
+        {
+          "name": "📋・prospect-lists",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Shared vetted prospect lists and verified account databases for active campaigns.",
+          "position": 4
+        },
+        {
+          "name": "🗺️・account-mapping",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Mapping complex organizational hierarchies and multi-divisional buyer networks.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "name": "👑 ┃ IC: OUTREACH EXPERIMENTS",
+      "position": 17,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🧪・message-testing",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Live peer review and split testing of new messaging hooks before campaign launch.",
+          "position": 1
+        },
+        {
+          "name": "📊・ab-testing",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Statistical analysis of live A/B campaign variants across cold channels.",
+          "position": 2
+        },
+        {
+          "name": "🎨・personalization-lab",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Engineering bespoke personalization triggers and automated data scrapers.",
+          "position": 3
+        },
+        {
+          "name": "🔁・follow-up-lab",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Testing multi-touch, multi-channel revival cadences on unresponsive accounts.",
+          "position": 4
+        },
+        {
+          "name": "📈・campaign-analysis",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Diagnostic reviews of active outbound campaigns with live optimization advice.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "name": "🧟 ┃ IC: REANIMATION LAB",
+      "position": 18,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🧟・revive-dead-leads",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Deploying psychological revival frameworks to resurrect dark sales pipelines.",
+          "position": 1
+        },
+        {
+          "name": "👻・ghost-recovery",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Actionable sequences to recover prospects who went silent after discovery or proposal.",
+          "position": 2
+        },
+        {
+          "name": "🔥・old-prospect-revival",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Mining 6-12 month old lead databases for fresh corporate triggers and new champions.",
+          "position": 3
+        },
+        {
+          "name": "📉・lost-deals",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Re-engaging lost opportunities upon competitor contract renewal or leadership change.",
+          "position": 4
+        },
+        {
+          "name": "⚡・second-chance",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Case studies and strategies for turning past rejections into high-value clients.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "name": "🧠 ┃ IC: INTELLIGENCE VAULT",
+      "position": 19,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "📐・advanced-frameworks",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Proprietary enterprise sales, revival, and pricing psychology frameworks.",
+          "position": 1
+        },
+        {
+          "name": "🗄️・research-database",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Curated institutional research on 90+ B2B verticals and buying cycles.",
+          "position": 2
+        },
+        {
+          "name": "🧠・buyer-intelligence",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Advanced psychographic profiling of Tier-1 corporate executives.",
+          "position": 3
+        },
+        {
+          "name": "📡・outreach-intelligence",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Real-time deliverability intel, algorithm updates, and spam filter shifts.",
+          "position": 4
+        },
+        {
+          "name": "💎・private-case-studies",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Unabridged, private deal breakdowns detailing exact steps to $50k+ contracts.",
+          "position": 5
+        },
+        {
+          "name": "⚙️・advanced-systems",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Complete SOPs and operational blueprints for client acquisition agencies.",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "name": "🏆 ┃ IC: PROOF ROOM",
+      "position": 20,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🏆・wins",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Documenting all verified member acquisition breakthroughs.",
+          "position": 1,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "💬・first-reply",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Celebrating initial responses from previously unreachable dream accounts.",
+          "position": 2,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "📅・first-meeting",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Documenting booked discovery calls with enterprise decision-makers.",
+          "position": 3,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "🤝・first-client",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Celebrating first high-ticket client closes from cold pipeline.",
+          "position": 4,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "🧟・reanimated-lead",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Proof of dead and ghosted leads successfully brought back and closed.",
+          "position": 5,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "💰・closed-deal",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Breakdowns of closed contracts, deal sizes, and conversion timelines.",
+          "position": 6,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "🔒・retained-client",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Milestone celebrations for 6, 12, and 24-month client retention.",
+          "position": 7,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "📈・account-expansion",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Documenting successful upsells, cross-sells, and contract expansions.",
+          "position": 8,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        },
+        {
+          "name": "🎁・referral",
+          "type": "forum",
+          "topic": "[INNER CIRCLE PRIVATE] Tracking organic client referrals and collaborative partner revenue.",
+          "position": 9,
+          "tags": [
+            "Verified Win",
+            "First Client",
+            "Reanimated Lead",
+            "Enterprise Deal",
+            "Retainer Expansion",
+            "Referral Win"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "💎 ┃ IC: VIP RESOURCES",
+      "position": 21,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🧰・private-tools",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Exclusive software tools, proprietary scrapers, and private automation utilities.",
+          "position": 1
+        },
+        {
+          "name": "📄・private-templates",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Vetted cold email sequences, proposal slide decks, and contract templates.",
+          "position": 2
+        },
+        {
+          "name": "📐・private-frameworks",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Proprietary diagnostic sheets, discovery rubrics, and objection demolition scripts.",
+          "position": 3
+        },
+        {
+          "name": "🔬・private-research",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Exclusive commercial intelligence reports and quarterly industry demand forecasts.",
+          "position": 4
+        },
+        {
+          "name": "📦・resource-drops",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Regular high-value asset drops, vetted vendor lists, and premium workflows.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "name": "📈 ┃ IC: ACCOUNT GROWTH",
+      "position": 22,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "AddReactions"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🩺・client-health",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Frameworks for conducting quarterly business reviews (QBRs) and health audits.",
+          "position": 1
+        },
+        {
+          "name": "🛡️・retention-strategy",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Proactive account management systems that make your service indispensable.",
+          "position": 2
+        },
+        {
+          "name": "🚀・expansion-opportunities",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Identifying expansion signals within active accounts before asking for upsells.",
+          "position": 3
+        },
+        {
+          "name": "📈・upsell-lab",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Constructing high-margin service additions and premium engagement tiers.",
+          "position": 4
+        },
+        {
+          "name": "🔀・cross-sell-lab",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Introducing new departmental solutions to existing enterprise client accounts.",
+          "position": 5
+        },
+        {
+          "name": "🎁・referral-engine",
+          "type": "text",
+          "topic": "[INNER CIRCLE PRIVATE] Building systematic, incentive-aligned referral mechanisms into client delivery.",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "name": "🔊 ┃ OPEN VOICE SUITE",
+      "position": 23,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "UseVAD"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "UseVAD"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🎙️ ｜ Research Room",
           "type": "voice",
           "position": 1
         },
         {
-          "name": "Strategy Session",
+          "name": "🎧 ｜ Outreach Lab",
           "type": "voice",
           "position": 2
+        },
+        {
+          "name": "🩺 ｜ Autopsy Room",
+          "type": "voice",
+          "position": 3
+        },
+        {
+          "name": "🧟 ｜ Reanimation Room",
+          "type": "voice",
+          "position": 4
+        },
+        {
+          "name": "🤝 ｜ Deal Room",
+          "type": "voice",
+          "position": 5
+        },
+        {
+          "name": "💼 ｜ Office Hours",
+          "type": "voice",
+          "position": 6
+        },
+        {
+          "name": "☕ ｜ Society Lounge",
+          "type": "voice",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "name": "🔒 ┃ IC: PRIVATE WAR ROOMS",
+      "position": 24,
+      "permissions": {
+        "@everyone": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Society Member": {
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        "Inner Circle": {
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "UseVAD"
+          ]
+        },
+        "Moderator": {
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "UseVAD"
+          ]
+        },
+        "Founder": {
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "UseVAD"
+          ]
+        }
+      },
+      "channels": [
+        {
+          "name": "🔒 ｜ IC Private Research",
+          "type": "voice",
+          "position": 1
+        },
+        {
+          "name": "🔒 ｜ Founder Office Hours",
+          "type": "voice",
+          "position": 2
+        },
+        {
+          "name": "🔒 ｜ Closed War Room",
+          "type": "voice",
+          "position": 3
         }
       ]
     }

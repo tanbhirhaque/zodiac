@@ -1,5 +1,5 @@
 const logger = require('../utils/logger');
-const { createBrandedEmbed, BRAND } = require('../utils/helpers');
+const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
 
 class OnboardingService {
   /**
@@ -12,8 +12,7 @@ class OnboardingService {
       return;
     }
 
-    const channelName = message.channel.name?.toLowerCase().replace(/\s+/g, '-');
-    if (channelName !== 'intros-and-networking') {
+    if (!channelMatches(message.channel.name, 'introductions') && !channelMatches(message.channel.name, 'intros-and-networking')) {
       return;
     }
 
@@ -33,47 +32,59 @@ class OnboardingService {
       return;
     }
 
-    // Check if member already has Community Member or Admin/Moderator
-    const hasCommunityRole = member.roles.cache.some(
-      r => r.name.toLowerCase() === 'community member' ||
-           r.name.toLowerCase() === 'lead specialist' ||
+    // Check if member already has Society Member, Inner Circle, Founder, Admin, or Moderator
+    const hasExistingRole = member.roles.cache.some(
+      r => r.name.toLowerCase() === 'society member' ||
+           r.name.toLowerCase() === 'community member' ||
+           r.name.toLowerCase() === 'inner circle' ||
+           r.name.toLowerCase() === 'founder' ||
            r.name.toLowerCase() === 'admin' ||
            r.name.toLowerCase() === 'moderator'
     );
 
-    if (hasCommunityRole) {
+    if (hasExistingRole) {
       return;
     }
 
-    const communityRole = message.guild.roles.cache.find(
-      r => r.name.toLowerCase() === 'community member'
+    const societyRole = message.guild.roles.cache.find(
+      r => r.name.toLowerCase() === 'society member' || r.name.toLowerCase() === 'community member'
     );
 
-    if (!communityRole) {
-      logger.warn(`[ONBOARDING] "Community Member" role not found in guild "${message.guild.name}".`);
+    if (!societyRole) {
+      logger.warn(`[ONBOARDING] "Society Member" role not found in guild "${message.guild.name}".`);
       return;
     }
 
     try {
-      // Assign the Community Member role
-      await member.roles.add(communityRole, 'Completed mandatory 24-hour introduction');
-      logger.setup(`[ONBOARDING] Assigned "Community Member" role to ${message.author.tag} in "${message.guild.name}"`);
+      // Assign the Society Member role
+      await member.roles.add(societyRole, 'Completed mandatory introduction in #introductions');
+      logger.setup(`[ONBOARDING] Assigned "${societyRole.name}" role to ${message.author.tag} in "${message.guild.name}"`);
 
       // Find key channels for the welcome unlock embed
-      const dealRoom = message.guild.channels.cache.find(c => c.name.toLowerCase().includes('deal-room'));
-      const top30 = message.guild.channels.cache.find(c => c.name.toLowerCase().includes('daily-top-30'));
-      const decisionRoom = message.guild.channels.cache.find(c => c.name.toLowerCase().includes('seller-decision-room'));
+      const marketResearch = message.guild.channels.cache.find(c => channelMatches(c.name, 'market-research'));
+      const icpFramework = message.guild.channels.cache.find(c => channelMatches(c.name, 'icp-framework'));
+      const graveyard = message.guild.channels.cache.find(c => channelMatches(c.name, 'dead-leads'));
+      const welcomeChan = message.guild.channels.cache.find(c => channelMatches(c.name, 'welcome'));
+      const founderRole = message.guild.roles.cache.find(r => r.name.toLowerCase() === 'founder');
 
       const unlockEmbed = createBrandedEmbed({
-        title: `🎉 Society Access Unlocked: Welcome, ${member.displayName}!`,
+        title: `🏛️ Society Credentials Activated: Welcome, ${member.displayName}!`,
         description: [
-          `Welcome to **Dead Lead Society** (*Where Dead Leads Get a Second Chance*).`,
-          `Your introduction has been verified and full community privileges are now active!\n`,
-          `🔓 **Unlocked Channels & Resources**:`,
-          `• **Daily Market Intelligence**: ${top30 ? `<#${top30.id}>` : '`#daily-top-30`'} & ${decisionRoom ? `<#${decisionRoom.id}>` : '`#seller-decision-room`'}`,
-          `• **Revival Deal Room**: ${dealRoom ? `<#${dealRoom.id}>` : '`#deal-room`'} (monetize stalled leads & partner on deals)`,
-          `• **Society Discussion**: Full access to general chat, media sharing, voice messages & strategy lounges.\n`,
-          `⚠️ **Important Reminder**: Maintain active participation within **7 days** to preserve your society standing.`
+          `Welcome to **Dead Lead Society** (*Where Dead Leads Get a Second Chance*).\n`,
+          `Your introduction has been verified. You now hold full access as an official **Society Member** across all **14 core institutional departments**:\n`,
+          `🔓 **Recommended Starting Points**:`,
+          `• **Market Intelligence**: ${marketResearch ? `<#${marketResearch.id}>` : '`#market-research`'} (macro sizing, industry trends & daily news triggers)`,
+          `• **ICP & Buyer Lab**: ${icpFramework ? `<#${icpFramework.id}>` : '`#icp-framework`'} (defining high-probability targets & buying committees)`,
+          `• **The Graveyard & Autopsy**: ${graveyard ? `<#${graveyard.id}>` : '`#dead-leads`'} (diagnosing ghosted accounts and failed pipeline)`,
+          `• **Multi-Channel Outreach**: Full access to Cold Email, LinkedIn, Cold Calling & Messaging labs.\n`,
+          `👑 **The Inner Circle (VIP Operator Syndicate)**:`,
+          `For agency founders and operators running active campaigns who require **direct live execution, custom pipeline construction, and hands-on deal reanimation**:`,
+          `• **Live Prospect & Account Teardowns** (live teardowns of your target enterprise accounts)`,
+          `• **Bespoke Lead Building** (custom verified C-suite contact extraction & algorithmic scoring)`,
+          `• **Live Outreach Experiments** (live A/B testing of your copy & deliverability audits)`,
+          `• **Signature Reanimation Sprints** (direct ghost-recovery campaigns & second-chance offers)`,
+          `• **Private War Rooms & Founder Office Hours** (direct closed-door audio strategy sessions)\n`,
+          `*Explore full VIP privileges in ${welcomeChan ? `<#${welcomeChan.id}>` : '`#welcome`'} or reach out to the ${founderRole ? `<@&${founderRole.id}>` : '@Founder'} for private admission.*`
         ].join('\n'),
         color: BRAND.COLOR_SUCCESS
       });

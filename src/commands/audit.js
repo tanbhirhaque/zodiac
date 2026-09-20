@@ -54,7 +54,49 @@ module.exports = {
       // 3. Audit Channels & Categories
       const channelAudit = channelManager.auditChannels(guild, structure.categories || []);
 
-      // 4. Determine Overall Setup Status
+      // 4. Audit Inner Circle Privacy & Permissions
+      const innerCircleCategories = guild.channels.cache.filter(
+        c => c.type === ChannelType.GuildCategory && (
+          c.name.includes('IC:') ||
+          c.name.toLowerCase().includes('inner circle') ||
+          c.name.includes('REANIMATION') ||
+          c.name.includes('LIVE RESEARCH') ||
+          c.name.includes('LEAD BUILDING')
+        )
+      );
+
+      const privacyBreaches = [];
+      const societyMemberRole = guild.roles.cache.find(r => r.name.toLowerCase() === 'society member');
+      const innerCircleCategoriesFound = innerCircleCategories.size;
+
+      for (const [, cat] of innerCircleCategories) {
+        // Check @everyone overwrite
+        const everyoneOverwrite = cat.permissionOverwrites.cache.get(guild.roles.everyone.id);
+        if (!everyoneOverwrite || !everyoneOverwrite.deny.has(PermissionFlagsBits.ViewChannel)) {
+          privacyBreaches.push(`Category "${cat.name}": @everyone can view (missing deny ViewChannel)`);
+        }
+
+        // Check @Society Member overwrite
+        if (societyMemberRole) {
+          const memberOverwrite = cat.permissionOverwrites.cache.get(societyMemberRole.id);
+          if (!memberOverwrite || !memberOverwrite.deny.has(PermissionFlagsBits.ViewChannel)) {
+            privacyBreaches.push(`Category "${cat.name}": @Society Member can view (missing deny ViewChannel)`);
+          }
+        }
+      }
+
+      let privacyBadge = '🔒 Fully Isolated (Zero Leaks)';
+      let privacyDetails = `All ${innerCircleCategoriesFound} active Inner Circle categories are strictly hidden from @everyone and @Society Member.`;
+
+      if (innerCircleCategoriesFound === 0) {
+        privacyBadge = '⚪ Not Yet Created';
+        privacyDetails = 'Inner Circle categories have not been initialized yet. Run `/setup` to build them.';
+      } else if (privacyBreaches.length > 0) {
+        privacyBadge = '🚨 Privacy Leak Detected!';
+        privacyDetails = privacyBreaches.slice(0, 4).map(b => `• ${b}`).join('\n');
+      }
+
+      // 5. Determine Overall Setup Status
       const totalMissing = roleAudit.missing.length + channelAudit.missingCategories.length + channelAudit.missingChannels.length;
       const totalConfiguredItems = (structure.roles?.length || 0) +
         (structure.categories?.length || 0) +
@@ -66,7 +108,7 @@ module.exports = {
       if (totalMissing === totalConfiguredItems) {
         statusBadge = '🔴 Not Configured (Run `/setup` to initialize)';
         statusColor = BRAND.COLOR_DANGER;
-      } else if (totalMissing > 0) {
+      } else if (totalMissing > 0 || privacyBreaches.length > 0) {
         statusBadge = `🟡 Partially Configured (${totalMissing} items missing)`;
         statusColor = BRAND.COLOR_WARNING;
       }
@@ -94,6 +136,14 @@ module.exports = {
             `• **Members**: ${totalGuildMembers}`,
             `• **WebSocket Latency**: \`${pingText}\``,
             `• **Setup Status**: ${statusBadge}`
+          ].join('\n'),
+          inline: false
+        },
+        {
+          name: '🔒 Inner Circle Privacy Status',
+          value: [
+            `• **Status**: ${privacyBadge}`,
+            `• ${privacyDetails}`
           ].join('\n'),
           inline: false
         },
@@ -144,7 +194,7 @@ module.exports = {
 
       const embed = createBrandedEmbed({
         title: `📋 Server Audit — ${guild.name}`,
-        description: `Audit inspection against \`server-structure.json\` configuration.`,
+        description: `Institutional audit inspection against \`server-structure.json\` configuration.`,
         color: statusColor,
         fields
       });
