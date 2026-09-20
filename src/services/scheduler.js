@@ -4,6 +4,7 @@ const logger = require('../utils/logger');
 const newsService = require('./newsService');
 const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
 const { config } = require('../config');
+const autopsyService = require('./autopsyService');
 
 function resolveSafeTimezone(tz) {
   const candidate = (tz || config.timezone || process.env.TIMEZONE || 'Asia/Dhaka').trim();
@@ -223,8 +224,18 @@ class SchedulerService {
       timezone: DEFAULT_TIMEZONE
     });
 
-    this.jobs.push(morningJob, eveningJob);
-    logger.scheduler(`Automated news jobs active: Daily at 9:00 AM and 7:00 PM (${DEFAULT_TIMEZONE})`);
+    // 3. Noon Job: 12:00 PM (12:00) every day ('0 12 * * *') - Autopsy of the Day
+    const autopsyJob = cron.schedule('0 12 * * *', async () => {
+      logger.scheduler('Running 12:00 PM Daily Autopsy Challenge cron job...');
+      for (const [guildId, guild] of client.guilds.cache) {
+        await autopsyService.postDailyAutopsy(guild);
+      }
+    }, {
+      timezone: DEFAULT_TIMEZONE
+    });
+
+    this.jobs.push(morningJob, eveningJob, autopsyJob);
+    logger.scheduler(`Automated jobs active: News at 9:00 AM & 7:00 PM | Autopsy at 12:00 PM (${DEFAULT_TIMEZONE})`);
   }
 
   /**

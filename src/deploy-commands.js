@@ -4,6 +4,10 @@ const logger = require('./utils/logger');
 const setupCommand = require('./commands/setup');
 const auditCommand = require('./commands/audit');
 const newsCommand = require('./commands/news');
+const reanimateCommand = require('./commands/reanimate');
+const roastCommand = require('./commands/roast');
+const triggerCommand = require('./commands/trigger');
+const applyCommand = require('./commands/apply');
 
 /**
  * Slash command registration script.
@@ -24,7 +28,11 @@ async function deployCommands() {
   const commands = [
     setupCommand.data.toJSON(),
     auditCommand.data.toJSON(),
-    newsCommand.data.toJSON()
+    newsCommand.data.toJSON(),
+    reanimateCommand.data.toJSON(),
+    roastCommand.data.toJSON(),
+    triggerCommand.data.toJSON(),
+    applyCommand.data.toJSON()
   ];
 
   const rest = new REST({ version: '10' }).setToken(config.token);
