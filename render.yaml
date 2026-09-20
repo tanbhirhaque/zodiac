@@ -1,17 +1,19 @@
 services:
   - type: web
-    name: dead-lead-society-bot
-    env: node
+    name: zodiac-bot
+    runtime: node
     plan: free
+    region: oregon
     buildCommand: npm install
     startCommand: npm start
-    autoDeploy: true
     envVars:
       - key: DISCORD_TOKEN
         sync: false
       - key: CLIENT_ID
-        sync: false
+        value: "1549546723771416666"
       - key: GUILD_ID
-        sync: false
+        value: "1549028696512405594"
       - key: TIMEZONE
-        value: Asia/Dhaka
+        value: "Asia/Dhaka"
+      - key: PORT
+        value: "3000"
