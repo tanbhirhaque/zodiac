@@ -8,6 +8,13 @@ const reanimateCommand = require('./commands/reanimate');
 const roastCommand = require('./commands/roast');
 const triggerCommand = require('./commands/trigger');
 const applyCommand = require('./commands/apply');
+const duelCommand = require('./commands/duel');
+const calculatorCommand = require('./commands/calculator');
+const dnsCommand = require('./commands/dnsScan');
+const winCommand = require('./commands/win');
+const nicheCommand = require('./commands/nicheMatch');
+const streakCommand = require('./commands/streak');
+const clauseCommand = require('./commands/clause');
 
 /**
  * Slash command registration script.
@@ -32,7 +39,14 @@ async function deployCommands() {
     reanimateCommand.data.toJSON(),
     roastCommand.data.toJSON(),
     triggerCommand.data.toJSON(),
-    applyCommand.data.toJSON()
+    applyCommand.data.toJSON(),
+    duelCommand.data.toJSON(),
+    calculatorCommand.data.toJSON(),
+    dnsCommand.data.toJSON(),
+    winCommand.data.toJSON(),
+    nicheCommand.data.toJSON(),
+    streakCommand.data.toJSON(),
+    clauseCommand.data.toJSON()
   ];
 
   const rest = new REST({ version: '10' }).setToken(config.token);

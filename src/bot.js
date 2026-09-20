@@ -20,6 +20,13 @@ const reanimateCommand = require('./commands/reanimate');
 const roastCommand = require('./commands/roast');
 const triggerCommand = require('./commands/trigger');
 const applyCommand = require('./commands/apply');
+const duelCommand = require('./commands/duel');
+const calculatorCommand = require('./commands/calculator');
+const dnsCommand = require('./commands/dnsScan');
+const winCommand = require('./commands/win');
+const nicheCommand = require('./commands/nicheMatch');
+const streakCommand = require('./commands/streak');
+const clauseCommand = require('./commands/clause');
 
 // Import Core Services
 const scheduler = require('./services/scheduler');
@@ -64,7 +71,7 @@ const client = new Client({
   ]
 });
 
-// Register slash commands collection
+// Register slash commands collection (14 total commands)
 client.commands = new Collection();
 client.commands.set(setupCommand.data.name, setupCommand);
 client.commands.set(auditCommand.data.name, auditCommand);
@@ -73,6 +80,13 @@ client.commands.set(reanimateCommand.data.name, reanimateCommand);
 client.commands.set(roastCommand.data.name, roastCommand);
 client.commands.set(triggerCommand.data.name, triggerCommand);
 client.commands.set(applyCommand.data.name, applyCommand);
+client.commands.set(duelCommand.data.name, duelCommand);
+client.commands.set(calculatorCommand.data.name, calculatorCommand);
+client.commands.set(dnsCommand.data.name, dnsCommand);
+client.commands.set(winCommand.data.name, winCommand);
+client.commands.set(nicheCommand.data.name, nicheCommand);
+client.commands.set(streakCommand.data.name, streakCommand);
+client.commands.set(clauseCommand.data.name, clauseCommand);
 
 // Bot Ready Event
 client.once(Events.ClientReady, () => {
@@ -86,7 +100,7 @@ client.once(Events.ClientReady, () => {
   // Set rich presence
   client.user.setPresence({
     activities: [{
-      name: 'Zodiac | /reanimate | /roast | /trigger',
+      name: 'Zodiac | /reanimate | /duel | /apply',
       type: ActivityType.Custom,
       state: 'Zodiac | Reviving Dead Leads'
     }],
@@ -108,7 +122,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
     return;
   }
 
-  // 2. Handle Button Clicks (Autopsy Reveals, Apply Buttons)
+  // 2. Handle Button Clicks (Autopsy Reveals, Apply Buttons, Duel Buttons)
   if (interaction.isButton()) {
     try {
       if (interaction.customId.startsWith('btn_reveal_autopsy_')) {
@@ -116,6 +130,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
       } else if (interaction.customId === 'btn_trigger_apply') {
         const modal = applyCommand.buildVipModal();
         await interaction.showModal(modal);
+      } else if (interaction.customId.startsWith('btn_duel_')) {
+        await duelCommand.handleButtonClick(interaction);
       }
     } catch (error) {
       logger.error(`Error handling button click: ${error.message}`, error);
@@ -173,8 +189,104 @@ client.on(Events.MessageCreate, async (message) => {
     }
   }
 
-  // 3. Prefix Command Fallbacks (!reanimate, !roast, !trigger, !apply, !vip)
   const trimmed = message.content.trim();
+
+  // 3. Prefix Commands
+
+  // !duel
+  if (trimmed.startsWith('!duel')) {
+    const obj = duelCommand.getRandomObjection();
+    const embed = duelCommand.buildDuelEmbed(obj);
+    const row = duelCommand.buildDuelButtons(obj.id);
+    await message.reply({ embeds: [embed], components: [row] }).catch(() => {});
+    return;
+  }
+
+  // !calculator or !math
+  if (trimmed.startsWith('!calculator') || trimmed.startsWith('!math')) {
+    const parts = trimmed.split(/\s+/).slice(1);
+    const leads = parseInt(parts[0], 10) || 25;
+    const dealSize = parseInt(parts[1], 10) || 3500;
+    const res = calculatorCommand.calculateLostPipeline(leads, dealSize);
+
+    const embed = createBrandedEmbed({
+      title: '🪦 LOST PIPELINE REVENUE CALCULATION',
+      description: [
+        `**Stalled Accounts**: \`${res.deadLeads}\` | **Average Retainer**: \`$${res.dealSize.toLocaleString()}\``,
+        `### Total Dormant Value: **$${res.totalValue.toLocaleString()}**\n`,
+        `• **10% Conservative Revival**: \`+$${res.conservativeRevive.toLocaleString()}\` net cash`,
+        `• **15% Benchmark Revival**: \`+$${res.benchmarkRevive.toLocaleString()}\` net cash`,
+        `• **22% High-Execution Revival**: \`+$${res.aggressiveRevive.toLocaleString()}\` net cash\n`,
+        '*Run `/calculator` for full interactive quota and domain infrastructure math.*'
+      ].join('\n'),
+      color: BRAND.COLOR_PRIMARY
+    });
+    await message.reply({ embeds: [embed] }).catch(() => {});
+    return;
+  }
+
+  // !dns <domain>
+  if (trimmed.startsWith('!dns')) {
+    const rawDomain = trimmed.replace(/^!dns\s*/i, '').trim();
+    if (!rawDomain) {
+      return message.reply({ content: '🔍 **Usage**: `!dns yourdomain.com` (or run `/dns`)' }).catch(() => {});
+    }
+
+    try {
+      const res = await dnsCommand.scanDomain(rawDomain);
+      const embed = createBrandedEmbed({
+        title: `🔍 DNS SCAN: ${res.domain.toUpperCase()}`,
+        description: [
+          `### Status: **${res.badge}**\n`,
+          `**SPF**: ${res.spfRecord ? '✅ `VERIFIED`' : '❌ `MISSING`'}`,
+          `**DMARC**: ${res.dmarcRecord ? '✅ `CONFIGURED`' : '❌ `MISSING`'}`,
+          `**Provider**: \`${res.mailProvider}\``
+        ].join('\n'),
+        color: res.color,
+        fields: res.recommendations.length > 0 ? [{
+          name: '🛠️ Recommendations',
+          value: res.recommendations.map(r => `• ${r}`).join('\n')
+        }] : []
+      });
+      await message.reply({ embeds: [embed] }).catch(() => {});
+    } catch (err) {
+      await message.reply({ content: `❌ Error scanning DNS for \`${rawDomain}\`: ${err.message}` }).catch(() => {});
+    }
+    return;
+  }
+
+  // !niche <service>
+  if (trimmed.startsWith('!niche')) {
+    const embed = createBrandedEmbed({
+      title: '🗂️ HIGH-TICKET NICHE MATCHMAKER',
+      description: 'Use `/niche` to discover top 3 verified B2B niches, economic buyer titles, and battle-tested hooks for your agency service.',
+      color: BRAND.COLOR_PRIMARY
+    });
+    await message.reply({ embeds: [embed] }).catch(() => {});
+    return;
+  }
+
+  // !clause
+  if (trimmed.startsWith('!clause')) {
+    const embed = createBrandedEmbed({
+      title: '📑 IRON-CLAD CONTRACT CLAUSE GENERATOR',
+      description: 'Deploy `/clause` to generate ready-to-paste contract protections: Kill-Fee, Scope Creep Surcharge, Payment Delinquency Suspension, and IP Withholding.',
+      color: BRAND.COLOR_PRIMARY
+    });
+    await message.reply({ embeds: [embed] }).catch(() => {});
+    return;
+  }
+
+  // !streak
+  if (trimmed.startsWith('!streak')) {
+    const embed = createBrandedEmbed({
+      title: '🔥 OUTBOUND STREAK & DISCIPLINE TRACKER',
+      description: 'Log your daily outbound reps (cold emails, DMs, calls) and track your consistency streak using `/streak`.',
+      color: BRAND.COLOR_PRIMARY
+    });
+    await message.reply({ embeds: [embed] }).catch(() => {});
+    return;
+  }
 
   // !reanimate or !autopsy
   if (trimmed.startsWith('!reanimate') || trimmed.startsWith('!autopsy')) {
