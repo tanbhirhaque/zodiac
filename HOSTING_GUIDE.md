@@ -61,8 +61,8 @@ Render-এর ফ্রি সার্ভিস ১৫ মিনিট কো�
 2. ড্যাশবোর্ডে **`Add New Monitor`** বাটনে ক্লিক করুন।
 3. নিচের ফিল্ডগুলো পূরণ করুন:
    * **Monitor Type**: `HTTP(s)`
-   * **Friendly Name**: `Dead Lead Society Bot`
-   * **URL (or IP)**: Render থেকে পাওয়া আপনার বটের URL (যেমন: `https://dead-lead-society-bot.onrender.com/health`)
+   * **Friendly Name**: `Zodiac`
+   * **URL (or IP)**: `https://zodiac-fc56.onrender.com/health`
    * **Monitoring Interval**: `5 minutes` (প্রতি ৫ মিনিট)
 4. **`Create Monitor`** বাটনে ক্লিক করুন!
 
@@ -71,16 +71,17 @@ Render-এর ফ্রি সার্ভিস ১৫ মিনিট কো�
 ---
 
 ## 🔍 লাইভ স্ট্যাটাস চেক করার উপায়
-আপনার বটের লাইভ স্ট্যাটাস যে কোনো মোবাইল বা ব্রাউজার থেকে দেখতে এই লিংকে ঢুকুন:
-`https://your-app-name.onrender.com/health`
+Zodiac-এর লাইভ ক্লাউড স্ট্যাটাস যে কোনো মোবাইল বা ব্রাউজার থেকে দেখতে এই লিংকে ঢুকুন:
+`https://zodiac-fc56.onrender.com/health`
 
-**আউটপুট দেখতে পাবেন:**
+**আউটপুট:**
 ```json
 {
   "status": "online",
-  "service": "Dead Lead Society Bot",
+  "service": "Zodiac",
+  "organization": "Dead Lead Society",
   "tagline": "Where Dead Leads Get a Second Chance.",
   "uptimeSeconds": 86400,
-  "timestamp": "2026-09-16T12:00:00.000Z"
+  "timestamp": "2026-09-20T23:40:00.000Z"
 }
 ```
