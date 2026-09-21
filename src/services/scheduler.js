@@ -5,6 +5,7 @@ const newsService = require('./newsService');
 const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
 const { config } = require('../config');
 const autopsyService = require('./autopsyService');
+const timeoutEnforcementService = require('./timeoutEnforcementService');
 
 function resolveSafeTimezone(tz) {
   const candidate = (tz || config.timezone || process.env.TIMEZONE || 'Asia/Dhaka').trim();
@@ -234,8 +235,17 @@ class SchedulerService {
       timezone: DEFAULT_TIMEZONE
     });
 
-    this.jobs.push(morningJob, eveningJob, autopsyJob);
-    logger.scheduler(`Automated jobs active: News at 9:00 AM & 7:00 PM | Autopsy at 12:00 PM (${DEFAULT_TIMEZONE})`);
+    // 4. Timeout Enforcement Job: Runs every 15 minutes ('*/15 * * * *')
+    const timeoutJob = cron.schedule('*/15 * * * *', async () => {
+      try {
+        await timeoutEnforcementService.checkPendingDeadlines(client);
+      } catch (err) {
+        logger.error(`[TIMEOUT-ENFORCEMENT] Cron error: ${err.message}`, err);
+      }
+    });
+
+    this.jobs.push(morningJob, eveningJob, autopsyJob, timeoutJob);
+    logger.scheduler(`Automated jobs active: News at 9:00 AM & 7:00 PM | Autopsy at 12:00 PM | Timeout check every 15m (${DEFAULT_TIMEZONE})`);
   }
 
   /**

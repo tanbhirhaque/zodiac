@@ -64,6 +64,16 @@
         "Connect",
         "Speak"
       ]
+    },
+    {
+      "name": "Timed Out",
+      "color": "#546E7A",
+      "hoist": false,
+      "mentionable": false,
+      "permissions": [
+        "ViewChannel",
+        "ReadMessageHistory"
+      ]
     }
   ],
   "categories": [
@@ -172,6 +182,61 @@
                 "ReadMessageHistory",
                 "AddReactions"
               ]
+            },
+            "Timed Out": {
+              "deny": [
+                "SendMessages",
+                "AddReactions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "⏳・timeout-zone",
+          "type": "text",
+          "topic": "[QUARANTINE] Expired onboarding timers. Request 24h reactivation or contact leadership.",
+          "position": 6,
+          "permissions": {
+            "@everyone": {
+              "deny": [
+                "ViewChannel"
+              ]
+            },
+            "Society Member": {
+              "deny": [
+                "ViewChannel"
+              ]
+            },
+            "Inner Circle": {
+              "deny": [
+                "ViewChannel"
+              ]
+            },
+            "Timed Out": {
+              "allow": [
+                "ViewChannel",
+                "ReadMessageHistory"
+              ],
+              "deny": [
+                "SendMessages",
+                "AddReactions"
+              ]
+            },
+            "Moderator": {
+              "allow": [
+                "ViewChannel",
+                "SendMessages",
+                "ReadMessageHistory",
+                "ManageMessages"
+              ]
+            },
+            "Founder": {
+              "allow": [
+                "ViewChannel",
+                "SendMessages",
+                "ReadMessageHistory",
+                "ManageMessages"
+              ]
             }
           }
         },
@@ -179,7 +244,7 @@
           "name": "📢・announcements",
           "type": "text",
           "topic": "[ONBOARDING] Official institutional announcements, system updates, and society-wide intelligence notices.",
-          "position": 6
+          "position": 7
         }
       ]
     },

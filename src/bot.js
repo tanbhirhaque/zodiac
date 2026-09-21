@@ -35,6 +35,7 @@ const mentorService = require('./services/mentorService');
 const autopsyService = require('./services/autopsyService');
 const { startHealthServer, stopHealthServer } = require('./services/healthServer');
 const welcomeGuideService = require('./services/welcomeGuideService');
+const timeoutEnforcementService = require('./services/timeoutEnforcementService');
 
 // Handle unhandled rejections and process errors safely
 process.on('unhandledRejection', (reason, promise) => {
@@ -135,6 +136,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
         await interaction.showModal(modal);
       } else if (interaction.customId.startsWith('btn_duel_')) {
         await duelCommand.handleButtonClick(interaction);
+      } else if (interaction.customId === 'btn_request_timeout_extension') {
+        await timeoutEnforcementService.handleExtensionRequest(interaction);
       }
     } catch (error) {
       logger.error(`Error handling button click: ${error.message}`, error);

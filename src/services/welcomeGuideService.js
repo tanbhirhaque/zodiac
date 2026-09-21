@@ -1,5 +1,6 @@
 const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
 const logger = require('../utils/logger');
+const timeoutEnforcementService = require('./timeoutEnforcementService');
 
 class WelcomeGuideService {
   /**
@@ -97,6 +98,9 @@ class WelcomeGuideService {
     logger.setup(`[ORIENTATION] New member joined: ${member.user.tag} in "${member.guild.name}"`);
 
     try {
+      // Register with timeout enforcement & send personal guidance DM
+      await timeoutEnforcementService.registerNewMember(member);
+
       const welcomeChan = member.guild.channels.cache.find(c => channelMatches(c.name, 'welcome'));
       const introChan = member.guild.channels.cache.find(c => channelMatches(c.name, 'introductions'));
       const rulesChan = member.guild.channels.cache.find(c => channelMatches(c.name, 'rules'));

@@ -1,7 +1,43 @@
+const fs = require('fs');
+const path = require('path');
 const logger = require('../utils/logger');
 const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
+const timeoutEnforcementService = require('./timeoutEnforcementService');
+
+const INTRO_CACHE_FILE = path.resolve(__dirname, '../../data/introduced-members.json');
 
 class OnboardingService {
+  constructor() {
+    this.introducedMembers = new Set();
+    this.loadCache();
+  }
+
+  loadCache() {
+    try {
+      if (fs.existsSync(INTRO_CACHE_FILE)) {
+        const raw = fs.readFileSync(INTRO_CACHE_FILE, 'utf8');
+        const list = JSON.parse(raw);
+        if (Array.isArray(list)) {
+          this.introducedMembers = new Set(list);
+        }
+      }
+    } catch (e) {
+      logger.warn(`[ONBOARDING] Could not load introduced members cache: ${e.message}`);
+    }
+  }
+
+  saveCache() {
+    try {
+      const dir = path.dirname(INTRO_CACHE_FILE);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(INTRO_CACHE_FILE, JSON.stringify([...this.introducedMembers], null, 2), 'utf8');
+    } catch (e) {
+      logger.error(`[ONBOARDING] Could not save introduced members cache: ${e.message}`);
+    }
+  }
+
   /**
    * Handle incoming message in the guild
    *
@@ -26,28 +62,20 @@ class OnboardingService {
       return;
     }
 
+    // Ignore if member already completed introduction previously
+    if (this.introducedMembers.has(message.author.id)) {
+      return;
+    }
+
     // Guard against 1-character spam if message content is populated
     if (message.content && message.content.trim().length < 5) {
       logger.warn(`[ONBOARDING] Ignored short intro (< 5 characters) from ${message.author.tag}`);
       return;
     }
 
-    // Check if member already has Society Member, Inner Circle, Founder, Admin, or Moderator
-    const hasExistingRole = member.roles.cache.some(
-      r => r.name.toLowerCase() === 'society member' ||
-           r.name.toLowerCase() === 'community member' ||
-           r.name.toLowerCase() === 'inner circle' ||
-           r.name.toLowerCase() === 'founder' ||
-           r.name.toLowerCase() === 'admin' ||
-           r.name.toLowerCase() === 'moderator'
-    );
-
-    if (hasExistingRole) {
-      return;
-    }
-
+    // Find the official Society Member role (strictly Society Member, not legacy Community Member)
     const societyRole = message.guild.roles.cache.find(
-      r => r.name.toLowerCase() === 'society member' || r.name.toLowerCase() === 'community member'
+      r => r.name.toLowerCase() === 'society member'
     );
 
     if (!societyRole) {
@@ -56,9 +84,23 @@ class OnboardingService {
     }
 
     try {
-      // Assign the Society Member role
-      await member.roles.add(societyRole, 'Completed mandatory introduction in #introductions');
-      logger.setup(`[ONBOARDING] Assigned "${societyRole.name}" role to ${message.author.tag} in "${message.guild.name}"`);
+      // Assign the Society Member role if not already present
+      if (!member.roles.cache.has(societyRole.id)) {
+        await member.roles.add(societyRole, 'Completed introduction in #introductions');
+        logger.setup(`[ONBOARDING] Assigned "${societyRole.name}" role to ${message.author.tag} in "${message.guild.name}"`);
+      }
+
+      // Clean up legacy Community Member role if present
+      const legacyRole = member.roles.cache.find(r => r.name.toLowerCase() === 'community member');
+      if (legacyRole) {
+        await member.roles.remove(legacyRole, 'Migrated to Society Member').catch(() => {});
+        logger.setup(`[ONBOARDING] Removed legacy "${legacyRole.name}" role from ${message.author.tag}`);
+      }
+
+      // Mark user as introduced and persist
+      this.introducedMembers.add(message.author.id);
+      this.saveCache();
+      await timeoutEnforcementService.markIntroduced(message.author.id, message.guild);
 
       // Find key channels for the welcome unlock embed
       const marketResearch = message.guild.channels.cache.find(c => channelMatches(c.name, 'market-research'));

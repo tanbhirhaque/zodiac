@@ -1,0 +1,30 @@
+{
+  "1234407166002073640": {
+    "userId": "1234407166002073640",
+    "username": "iamsaad101",
+    "displayName": "Saad Abdullah",
+    "joinedAt": 1789962284836,
+    "deadline": 1790048684836,
+    "extensionsUsed": 0,
+    "noticesSent": {
+      "welcome": true,
+      "halfway": false,
+      "finalWarning": false
+    },
+    "status": "pending"
+  },
+  "1368977139847794690": {
+    "userId": "1368977139847794690",
+    "username": "sathi0399",
+    "displayName": "Sathi",
+    "joinedAt": 1789962286261,
+    "deadline": 1790048686261,
+    "extensionsUsed": 0,
+    "noticesSent": {
+      "welcome": true,
+      "halfway": false,
+      "finalWarning": false
+    },
+    "status": "pending"
+  }
+}
