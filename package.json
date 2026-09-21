@@ -12,7 +12,8 @@
     "deploy": "node src/deploy-commands.js",
     "setup": "node src/cli-setup.js",
     "populate": "node src/scripts/populateWelcomeAndRules.js",
-    "migrate": "node src/scripts/migrateChannelEmojis.js"
+    "migrate": "node src/scripts/migrateChannelEmojis.js",
+    "set-avatar": "node src/scripts/setBotAvatar.js"
   },
   "keywords": [
     "discord",
