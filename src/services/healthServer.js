@@ -10,6 +10,41 @@ const logger = require('../utils/logger');
  * @returns {http.Server}
  */
 let activeServer = null;
+let keepAliveInterval = null;
+
+/**
+ * Self-ping public URL every 8 minutes to prevent Render free-tier idle spin-down
+ */
+function startKeepAliveSelfPing() {
+  const publicUrl = process.env.RENDER_EXTERNAL_URL || 'https://zodiac-fc56.onrender.com';
+  const pingUrl = `${publicUrl.replace(/\/+$/, '')}/health`;
+
+  // Render spins down after 15 minutes of inactivity; ping every 8 minutes
+  const INTERVAL_MS = 8 * 60 * 1000;
+
+  if (keepAliveInterval) clearInterval(keepAliveInterval);
+
+  keepAliveInterval = setInterval(async () => {
+    try {
+      const res = await fetch(pingUrl, { method: 'GET', headers: { 'User-Agent': 'Zodiac-KeepAlive/1.0' } });
+      if (res.ok) {
+        logger.boot(`[KEEP-ALIVE] Stay-awake ping to ${pingUrl} confirmed (HTTP ${res.status}).`);
+      }
+    } catch (err) {
+      logger.warn(`[KEEP-ALIVE] Ping to ${pingUrl} failed: ${err.message}`);
+    }
+  }, INTERVAL_MS);
+
+  // Initial ping 60 seconds after boot
+  setTimeout(async () => {
+    try {
+      await fetch(pingUrl, { method: 'GET', headers: { 'User-Agent': 'Zodiac-KeepAlive/1.0' } });
+      logger.boot(`[KEEP-ALIVE] Initial stay-awake self-ping sent to ${pingUrl}.`);
+    } catch {
+      // Non-critical if boot ping fails
+    }
+  }, 60 * 1000);
+}
 
 /**
  * Built-in lightweight HTTP health server.
@@ -61,6 +96,8 @@ function startHealthServer(port = process.env.PORT || 3000) {
   // Explicitly bind to 0.0.0.0 to guarantee external reachability in Docker / Cloud containers
   server.listen(numericPort, '0.0.0.0', () => {
     logger.boot(`Health-check keep-alive server listening on port ${numericPort} (0.0.0.0)`);
+    // Start automated self-ping loop
+    startKeepAliveSelfPing();
   });
 
   server.on('error', (err) => {
@@ -83,6 +120,10 @@ function startHealthServer(port = process.env.PORT || 3000) {
  */
 function stopHealthServer() {
   return new Promise((resolve) => {
+    if (keepAliveInterval) {
+      clearInterval(keepAliveInterval);
+      keepAliveInterval = null;
+    }
     if (activeServer) {
       activeServer.close(() => {
         logger.boot('Health-check keep-alive server stopped.');
