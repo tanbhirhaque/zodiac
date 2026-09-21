@@ -86,7 +86,22 @@ class OnboardingService {
           `• **Private War Rooms & Founder Office Hours** (direct closed-door audio strategy sessions)\n`,
           `*Explore full VIP privileges in ${welcomeChan ? `<#${welcomeChan.id}>` : '`#welcome`'} or reach out to the ${founderRole ? `<@&${founderRole.id}>` : '@Founder'} for private admission.*`
         ].join('\n'),
-        color: BRAND.COLOR_SUCCESS
+        color: BRAND.COLOR_SUCCESS,
+        fields: [
+          {
+            name: '⚡ How to Put Zodiac to Work Immediately',
+            value: [
+              '• `/reanimate` ➔ Revive ghosted prospects with second-chance copy',
+              '• `/roast` ➔ Ruthlessly audit your cold email or pitch copy',
+              '• `/trigger` ➔ Instant buying triggers & hooks by industry',
+              '• `/duel` ➔ Spar against cynical enterprise objections',
+              '• `/calculator` ➔ Quantify lost revenue in your dormant pipeline',
+              '• `/dns` ➔ Verify your outbound email domain health',
+              '• `@Zodiac [question]` ➔ Instant tactical acquisition mentorship'
+            ].join('\n'),
+            inline: false
+          }
+        ]
       });
 
       // Send reply and react

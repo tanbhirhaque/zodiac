@@ -34,6 +34,7 @@ const onboardingService = require('./services/onboardingService');
 const mentorService = require('./services/mentorService');
 const autopsyService = require('./services/autopsyService');
 const { startHealthServer, stopHealthServer } = require('./services/healthServer');
+const welcomeGuideService = require('./services/welcomeGuideService');
 
 // Handle unhandled rejections and process errors safely
 process.on('unhandledRejection', (reason, promise) => {
@@ -63,16 +64,11 @@ if (!validation.valid) {
   process.exit(1);
 }
 
-// Initialize Discord Client
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages
-  ]
-});
+let activeClient = null;
 
-// Register slash commands collection (14 total commands)
-client.commands = new Collection();
+function bindEvents(client) {
+  // Register slash commands collection (14 total commands)
+  client.commands = new Collection();
 client.commands.set(setupCommand.data.name, setupCommand);
 client.commands.set(auditCommand.data.name, auditCommand);
 client.commands.set(newsCommand.data.name, newsCommand);
@@ -404,25 +400,66 @@ client.on(Events.MessageCreate, async (message) => {
   }
 });
 
-// Client Error Event
-client.on('error', (error) => {
-  logger.error('Discord client encountered an error:', error);
-});
+  // New Member Join Event (Orientation & Guide)
+  client.on(Events.GuildMemberAdd, async (member) => {
+    try {
+      await welcomeGuideService.handleNewMember(member);
+    } catch (error) {
+      logger.error(`Error in GuildMemberAdd welcome handler: ${error.message}`, error);
+    }
+  });
+
+  // Client Error Event
+  client.on('error', (error) => {
+    logger.error('Discord client encountered an error:', error);
+  });
+}
 
 // Graceful shutdown
 const shutdown = async (signal) => {
   logger.boot(`Received ${signal}. Shutting down bot gracefully...`);
   await stopHealthServer();
   scheduler.destroy();
-  client.destroy();
+  if (activeClient) activeClient.destroy();
   process.exit(0);
 };
 
 process.on('SIGINT', () => shutdown('SIGINT'));
 process.on('SIGTERM', () => shutdown('SIGTERM'));
 
-// Connect to Discord Gateway
-client.login(config.token).catch((err) => {
-  logger.error(`Failed to connect to Discord Gateway: ${err.message}`);
-  process.exit(1);
-});
+// Connect to Discord Gateway with privileged intent auto-detection
+async function startBot() {
+  const fullIntents = [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers
+  ];
+  const standardIntents = [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages
+  ];
+
+  let client = new Client({ intents: fullIntents });
+  bindEvents(client);
+  activeClient = client;
+
+  try {
+    await client.login(config.token);
+    logger.boot('Privileged GuildMembers intent active: Real-time join orientation enabled.');
+  } catch (err) {
+    if (err.message && err.message.includes('disallowed intents')) {
+      logger.warn('[INTENTS] GuildMembers intent not enabled in Discord Developer Portal. Falling back to standard intents...');
+      client.destroy();
+      client = new Client({ intents: standardIntents });
+      bindEvents(client);
+      activeClient = client;
+      await client.login(config.token);
+      logger.boot('Connected successfully with standard intents.');
+    } else {
+      logger.error(`Failed to connect to Discord Gateway: ${err.message}`);
+      process.exit(1);
+    }
+  }
+}
+
+startBot();

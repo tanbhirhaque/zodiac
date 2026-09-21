@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, Events, MessageType } = require('discord.js')
 const { config, validateConfig } = require('../config');
 const { createBrandedEmbed, BRAND, channelMatches } = require('../utils/helpers');
 const logger = require('../utils/logger');
+const welcomeGuideService = require('../services/welcomeGuideService');
 
 const validation = validateConfig({ requireGuildId: true });
 if (!validation.valid) {
@@ -166,6 +167,9 @@ client.once(Events.ClientReady, async () => {
       await syncEmbed(welcomeChan, welcomeEmbed1, 'WELCOME TO DEAD LEAD SOCIETY');
       await syncEmbed(welcomeChan, welcomeEmbed2, 'MEMBERSHIP ARCHITECTURE', { pin: true });
       await syncEmbed(welcomeChan, welcomeEmbed3, 'THE INNER CIRCLE: VIP OPERATOR PRIVILEGES', { pin: true });
+
+      const welcomeEmbed4 = welcomeGuideService.createZodiacArsenalEmbed(guild);
+      await syncEmbed(welcomeChan, welcomeEmbed4, 'HOW TO DEPLOY ZODIAC', { pin: true });
     }
 
     // =========================================================================
