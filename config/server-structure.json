@@ -248,7 +248,7 @@
         {
           "name": "👋・welcome",
           "type": "text",
-          "topic": "Server entrance and onboarding.",
+          "topic": "GATEWAY OVERVIEW: Official manifesto, membership credentials & 24h countdown. Read-only.",
           "permissions": {
             "@everyone": {
               "allow": [
@@ -306,7 +306,7 @@
         {
           "name": "📜・read-me-first",
           "type": "text",
-          "topic": "What Dead Lead Society is and how it works.",
+          "topic": "THE PHILOSOPHY: Why 90% of B2B pipeline dies & how we reanimate. Read-only.",
           "permissions": {
             "@everyone": {
               "allow": [
@@ -364,7 +364,7 @@
         {
           "name": "⚙️・how-the-society-works",
           "type": "text",
-          "topic": "How tasks work and how to submit work.",
+          "topic": "OPERATING MECHANICS: Department tasks, submission formats & resource standards. Read-only.",
           "permissions": {
             "@everyone": {
               "allow": [
@@ -422,7 +422,7 @@
         {
           "name": "⚖️・community-rules",
           "type": "text",
-          "topic": "Rules of the war room.",
+          "topic": "ZERO-TOLERANCE CODE: No pitch-slapping, no unsolicited DMs, no spam. Violators are banned immediately.",
           "permissions": {
             "@everyone": {
               "allow": [
@@ -480,7 +480,7 @@
         {
           "name": "🗺️・roadmap",
           "type": "text",
-          "topic": "Where to start and how to participate.",
+          "topic": "SOCIETY ROADMAP: The complete acquisition & pipeline reanimation sequence. Read-only.",
           "permissions": {
             "@everyone": {
               "allow": [
@@ -538,7 +538,7 @@
         {
           "name": "💬・introductions",
           "type": "text",
-          "topic": "Introduce yourself to the society.",
+          "topic": "ZODIAC GATEKEEPER: Post your 4-line intro within 24h to unlock Society Member credentials. No spam or links.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -595,7 +595,7 @@
         {
           "name": "📢・announcements",
           "type": "text",
-          "topic": "Official announcements.",
+          "topic": "OFFICIAL DISPATCHES: Institutional announcements from Founders & Zodiac. Read-only with reactions.",
           "permissions": {
             "@everyone": {
               "allow": [
@@ -702,7 +702,7 @@
         {
           "name": "🤖・bot-guide",
           "type": "text",
-          "topic": "Guide on how to use the existing bot.",
+          "topic": "ZODIAC MANUAL: Detailed operating guide for all 14 bot commands. Read-only.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -755,7 +755,7 @@
         {
           "name": "⚡・bot-commands",
           "type": "text",
-          "topic": "Execute bot commands here.",
+          "topic": "EXECUTION GROUND: Execute Zodiac commands (/reanimate, /roast, /duel, /calculator, /dns, /clause). No off-topic chatter.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -808,7 +808,7 @@
         {
           "name": "🔧・bot-tools",
           "type": "text",
-          "topic": "Bot tools access.",
+          "topic": "BOT TOOLBOX: Direct access to Zodiac diagnostics & audit tools.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -861,7 +861,7 @@
         {
           "name": "📈・bot-results",
           "type": "text",
-          "topic": "Bot results output.",
+          "topic": "SYSTEM OUTPUTS: Automated audit results & calculation telemetry. Read-only.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -914,7 +914,7 @@
         {
           "name": "🩺・bot-support",
           "type": "text",
-          "topic": "Support for bot-related issues.",
+          "topic": "TECHNICAL SUPPORT: Report bot errors or request assistance with screenshot.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -967,7 +967,7 @@
         {
           "name": "⏳・timeout-zone",
           "type": "text",
-          "topic": "Quarantine zone.",
+          "topic": "QUARANTINE ZONE: 24h intro deadline expired. Click [Request 24h Reactivation] to extend. No chat.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -1024,7 +1024,7 @@
         {
           "name": "🪦・dead-leads",
           "type": "text",
-          "topic": "Graveyard for dead leads.",
+          "topic": "THE GRAVEYARD: Post stalled or ghosted deals for collaborative community autopsy and revival scripts.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -1077,7 +1077,7 @@
         {
           "name": "🩺・lead-autopsy",
           "type": "text",
-          "topic": "Autopsy room.",
+          "topic": "DAILY AUTOPSY (12:00 PM): Real-world stalled deal case study with interactive diagnosis reveal button.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -1130,7 +1130,7 @@
         {
           "name": "📊・market-trends",
           "type": "text",
-          "topic": "Macro market trends.",
+          "topic": "MARKET RECON (9:00 AM): Daily B2B commercial intelligence, macro trends & funding signals. Read-only.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -1183,7 +1183,7 @@
         {
           "name": "⚡・demand-signals",
           "type": "text",
-          "topic": "Demand signals.",
+          "topic": "DEMAND SIGNALS (7:00 PM): Daily outreach catalysts, buying intent triggers & cold email angles. Read-only.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -1236,7 +1236,7 @@
         {
           "name": "📐・message-frameworks",
           "type": "text",
-          "topic": "Weaponized message frameworks.",
+          "topic": "MESSAGE VAULT: Proven high-converting cold email, LinkedIn & follow-up frameworks. Read-only.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -1289,7 +1289,7 @@
         {
           "name": "🎯・icp-framework",
           "type": "text",
-          "topic": "ICP Framework.",
+          "topic": "ICP BLUEPRINT: Institutional frameworks for defining ideal buyer personas & company criteria. Read-only.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -1391,7 +1391,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for target selection. ONLY ONE TASK BOARD PER CATEGORY.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -1444,7 +1444,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your work for target selection here. ONLY ONE SUBMISSION CHANNEL.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -1497,7 +1497,7 @@
         {
           "name": "🔍・niche-research",
           "type": "text",
-          "topic": "Niche selection and research.",
+          "topic": "NICHE SELECTION: Identify profitable B2B verticals, TAM analysis & market viability.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -1550,7 +1550,7 @@
         {
           "name": "🎯・icp-research",
           "type": "text",
-          "topic": "Ideal Customer Profile research.",
+          "topic": "ICP ENGINEERING: Deep dive into company firmographics, headcount, revenue & tech stacks.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -1603,7 +1603,7 @@
         {
           "name": "👤・buyer-persona",
           "type": "text",
-          "topic": "Buyer persona development.",
+          "topic": "BUYER PSYCHOLOGY: Understand C-suite decision-makers, buying committees & internal politics.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -1656,7 +1656,7 @@
         {
           "name": "💎・offer-positioning",
           "type": "text",
-          "topic": "Offer and service positioning.",
+          "topic": "OFFER ENGINEERING: Transform low-ticket commodity services into high-ticket no-brainer offers.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -1709,7 +1709,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "Discussion around target selection.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -1811,7 +1811,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for market and industry research.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -1864,7 +1864,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your research assignments here.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -1917,7 +1917,7 @@
         {
           "name": "📊・market-research",
           "type": "text",
-          "topic": "Market research.",
+          "topic": "MARKET INTEL: Quantitative industry trends, competitive gaps & market reports.",
           "permissions": {
             "@everyone": {
               "deny": [
@@ -1970,7 +1970,7 @@
         {
           "name": "🏢・industry-research",
           "type": "text",
-          "topic": "Industry research.",
+          "topic": "VERTICAL ANALYSIS: Deep dives into SaaS, Agencies, FinTech, Ecom & Logistics sectors.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -2023,7 +2023,7 @@
         {
           "name": "📑・research-papers",
           "type": "text",
-          "topic": "Research papers and studies.",
+          "topic": "WHITEPAPERS: Academic studies, econometric reports & enterprise B2B data.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -2076,7 +2076,7 @@
         {
           "name": "📝・journal-writing",
           "type": "text",
-          "topic": "Journal writing and evidence gathering.",
+          "topic": "EXECUTION LOGS: Member field journals, outreach evidence & daily acquisition notes.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -2129,7 +2129,7 @@
         {
           "name": "📽️・presentation",
           "type": "text",
-          "topic": "Research presentation.",
+          "topic": "PITCH DECKS: Slide decks, buyer presentation frameworks & meeting assets.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -2182,7 +2182,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "General intelligence discussion.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -2284,7 +2284,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for LinkedIn and professional positioning.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -2337,7 +2337,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your frontline work here.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -2390,7 +2390,7 @@
         {
           "name": "💼・linkedin-foundation",
           "type": "text",
-          "topic": "LinkedIn profile foundation.",
+          "topic": "PROFILE FOUNDATION: High-status banner, headline, about section & featured proof architecture.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -2443,7 +2443,7 @@
         {
           "name": "🩺・profile-audit",
           "type": "text",
-          "topic": "Profile audit and feedback.",
+          "topic": "PROFILE AUDITS: Drop your LinkedIn profile link for peer & mentor teardowns.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -2496,7 +2496,7 @@
         {
           "name": "📝・content-research",
           "type": "text",
-          "topic": "Content research.",
+          "topic": "AUTHORITY CONTENT: Hook frameworks, carousel structures & thought-leadership research.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -2549,7 +2549,7 @@
         {
           "name": "👥・audience-research",
           "type": "text",
-          "topic": "Audience research.",
+          "topic": "BUYER TARGETING: Finding and connecting with high-probability decision-makers.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -2602,7 +2602,7 @@
         {
           "name": "🤝・linkedin-engagement",
           "type": "text",
-          "topic": "LinkedIn engagement.",
+          "topic": "ENGAGEMENT STRATEGY: High-status commenting, networking & relationship building. No pods.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -2655,7 +2655,7 @@
         {
           "name": "🎯・linkedin-positioning",
           "type": "text",
-          "topic": "LinkedIn positioning.",
+          "topic": "CATEGORY LEADERSHIP: Position yourself as the go-to specialist in your niche.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -2708,7 +2708,7 @@
         {
           "name": "📨・linkedin-outreach",
           "type": "text",
-          "topic": "LinkedIn outreach.",
+          "topic": "DIRECT OUTREACH: High-conversion direct messaging, connection notes & chat-to-call scripts.",
           "position": 9,
           "permissions": {
             "@everyone": {
@@ -2761,7 +2761,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "Frontline discussion.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 10,
           "permissions": {
             "@everyone": {
@@ -2863,7 +2863,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for lead research and prospect identification.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -2916,7 +2916,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your lead research here.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -2969,7 +2969,7 @@
         {
           "name": "🔍・lead-research",
           "type": "text",
-          "topic": "Lead research.",
+          "topic": "PROSPECT RESEARCH: Methodologies for finding verified high-fit account data.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -3022,7 +3022,7 @@
         {
           "name": "🧲・lead-sourcing",
           "type": "text",
-          "topic": "Lead sourcing.",
+          "topic": "LEAD EXTRACTION: Apollo, Sales Navigator, Clay & scraping workflows. No pirated data.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -3075,7 +3075,7 @@
         {
           "name": "⚡・buyer-signals",
           "type": "text",
-          "topic": "Buyer signals and high-intent prospects.",
+          "topic": "INTENT SIGNALS: Hiring triggers, funding rounds & leadership changes indicating active buying intent.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -3128,7 +3128,7 @@
         {
           "name": "🎯・lead-qualification",
           "type": "text",
-          "topic": "Lead qualification.",
+          "topic": "QUALIFICATION FILTERS: Discard tire-kickers and focus only on high-value buyers.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -3181,7 +3181,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "Hunting ground discussion.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -3283,7 +3283,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for outbound client acquisition.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -3336,7 +3336,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your outreach work here.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -3389,7 +3389,7 @@
         {
           "name": "✉️・cold-email",
           "type": "text",
-          "topic": "Cold email strategies.",
+          "topic": "COLD OUTREACH: Deliverability, SPF/DKIM/DMARC setups, inbox warmup & copy.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -3442,7 +3442,7 @@
         {
           "name": "💬・outreach-messaging",
           "type": "text",
-          "topic": "Outreach messaging and personalization.",
+          "topic": "COPYWRITING LAB: Subject lines, personalized hooks & low-friction CTAs.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -3495,7 +3495,7 @@
         {
           "name": "🔁・follow-up",
           "type": "text",
-          "topic": "Follow-up strategies.",
+          "topic": "THE REVIVAL LOOP: Strategic follow-up psychology to resurrect unresponsive prospects.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -3548,7 +3548,7 @@
         {
           "name": "🚀・outreach-campaigns",
           "type": "text",
-          "topic": "Outreach campaigns.",
+          "topic": "CAMPAIGN LAUNCH: Scaled campaign setups using Instantly, Smartlead & secondary domains.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -3601,7 +3601,7 @@
         {
           "name": "📈・outreach-results",
           "type": "text",
-          "topic": "Outreach results and message testing.",
+          "topic": "CAMPAIGN DATA: Share open rates, reply rates & conversion screenshots. Redact sensitive PII.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -3654,7 +3654,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "The Assault discussion.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -3756,7 +3756,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for converting conversations into clients.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -3809,7 +3809,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your negotiation practice here.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -3862,7 +3862,7 @@
         {
           "name": "🎙️・discovery-calls",
           "type": "text",
-          "topic": "Discovery calls and qualification.",
+          "topic": "DISCOVERY LAB: Diagnose prospect bleeding necks and disqualify tire-kickers.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -3915,7 +3915,7 @@
         {
           "name": "📑・proposals",
           "type": "text",
-          "topic": "Proposals and pricing.",
+          "topic": "PROPOSAL DESIGN: High-ticket pricing tiers, scope boundaries & closing proposals.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -3968,7 +3968,7 @@
         {
           "name": "🛡️・objection-handling",
           "type": "text",
-          "topic": "Objection handling.",
+          "topic": "OBJECTION REVERSALS: Flip \"no budget\", \"not now\", or \"send info\" into active contracts.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -4021,7 +4021,7 @@
         {
           "name": "⚖️・negotiation",
           "type": "text",
-          "topic": "Sales conversations and negotiation.",
+          "topic": "DEAL NEGOTIATION: Protect contract margins, payment terms & scope limits.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -4074,7 +4074,7 @@
         {
           "name": "🤝・closing",
           "type": "text",
-          "topic": "Closing the deal.",
+          "topic": "FINAL CLOSING: Getting contracts signed, retainers wired & deals finalized.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -4127,7 +4127,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "Negotiation discussion.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -4229,7 +4229,7 @@
         {
           "name": "📋・task-board",
           "type": "text",
-          "topic": "Tasks for everything after acquiring a client.",
+          "topic": "DEPARTMENT TASKS (Read-Only): Active assignments and objectives. Submit completed work in #task-submission.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -4282,7 +4282,7 @@
         {
           "name": "✅・task-submission",
           "type": "text",
-          "topic": "Submit your client front work here.",
+          "topic": "SUBMISSION CHAMBER: Post completed assignments, Google Docs/Notion links here. No casual chat.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -4335,7 +4335,7 @@
         {
           "name": "🚀・client-onboarding",
           "type": "text",
-          "topic": "Client onboarding.",
+          "topic": "CLIENT ONBOARDING: First 48-hour onboarding excellence, kickoff agendas & intake forms.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -4388,7 +4388,7 @@
         {
           "name": "🔒・client-retention",
           "type": "text",
-          "topic": "Delivery and retention.",
+          "topic": "CHURN PREVENTION: Delivery quality, SLA management & compounding client lifetime value.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -4441,7 +4441,7 @@
         {
           "name": "📈・upselling",
           "type": "text",
-          "topic": "Upselling strategies.",
+          "topic": "UPSELL STRATEGY: Expanding contract scope and adding revenue tiers to existing accounts.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -4494,7 +4494,7 @@
         {
           "name": "🔀・cross-selling",
           "type": "text",
-          "topic": "Cross-selling strategies.",
+          "topic": "CROSS-SELL ENGINES: Introducing complementary service offerings.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -4547,7 +4547,7 @@
         {
           "name": "🎁・referrals",
           "type": "text",
-          "topic": "Referral systems.",
+          "topic": "REFERRAL SYSTEMS: Systematic frameworks for extracting warm client referrals.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -4600,7 +4600,7 @@
         {
           "name": "🤝・client-relationships",
           "type": "text",
-          "topic": "Client relationships and communication.",
+          "topic": "ACCOUNT MANAGEMENT: Executive communication, quarterly reviews & long-term retention.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -4653,7 +4653,7 @@
         {
           "name": "🏆・case-studies",
           "type": "text",
-          "topic": "Case studies.",
+          "topic": "CASE STUDIES: Documenting verified client transformations & proof assets.",
           "position": 9,
           "permissions": {
             "@everyone": {
@@ -4706,7 +4706,7 @@
         {
           "name": "📈・client-results",
           "type": "text",
-          "topic": "Client results.",
+          "topic": "PROOF VAULT: Share client ROI, closed numbers & performance milestones.",
           "position": 10,
           "permissions": {
             "@everyone": {
@@ -4808,7 +4808,7 @@
         {
           "name": "📚・recommended-books",
           "type": "text",
-          "topic": "Recommended books.",
+          "topic": "CANONICAL READING: Essential books on B2B sales, direct response & business psychology.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -4861,7 +4861,7 @@
         {
           "name": "📑・research-papers",
           "type": "text",
-          "topic": "Research papers.",
+          "topic": "WHITEPAPERS: Academic studies, econometric reports & enterprise B2B data.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -5179,7 +5179,7 @@
         {
           "name": "📄・templates",
           "type": "text",
-          "topic": "Templates.",
+          "topic": "TEMPLATES: Notion dashboards, Google Sheet trackers, cold email templates & intake forms.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -5232,7 +5232,7 @@
         {
           "name": "☑️・checklists",
           "type": "text",
-          "topic": "Checklists.",
+          "topic": "OPERATIONAL CHECKLISTS: Campaign launch checklists, deliverability audits & sales prep.",
           "position": 9,
           "permissions": {
             "@everyone": {
@@ -5285,7 +5285,7 @@
         {
           "name": "📐・frameworks",
           "type": "text",
-          "topic": "Frameworks.",
+          "topic": "DECISION FRAMEWORKS: Proven mental models for positioning, pricing & objection handling.",
           "position": 10,
           "permissions": {
             "@everyone": {
@@ -5338,7 +5338,7 @@
         {
           "name": "🏆・case-studies",
           "type": "text",
-          "topic": "Case studies.",
+          "topic": "CASE STUDIES: Documenting verified client transformations & proof assets.",
           "position": 11,
           "permissions": {
             "@everyone": {
@@ -5440,7 +5440,7 @@
         {
           "name": "🛠️・research-tools",
           "type": "text",
-          "topic": "Research tools.",
+          "topic": "RESEARCH TOOLS: Top intelligence and company research software.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -5493,7 +5493,7 @@
         {
           "name": "🔍・lead-tools",
           "type": "text",
-          "topic": "Lead research tools.",
+          "topic": "SCRAPING TOOLS: Apollo, Clay, SalesNav, Findymail & lead database workflows.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -5546,7 +5546,7 @@
         {
           "name": "✉️・email-tools",
           "type": "text",
-          "topic": "Email tools.",
+          "topic": "EMAIL INFRASTRUCTURE: Mailboxes, warmup tools, DNS configuration & senders.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -5599,7 +5599,7 @@
         {
           "name": "💼・linkedin-tools",
           "type": "text",
-          "topic": "LinkedIn tools.",
+          "topic": "LINKEDIN TOOLBOX: Analytics, profile enhancements & high-status workflows.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -5652,7 +5652,7 @@
         {
           "name": "📊・analytics-tools",
           "type": "text",
-          "topic": "Analytics tools.",
+          "topic": "PIPELINE ANALYTICS: CRM systems, deal trackers & conversion metrics.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -5705,7 +5705,7 @@
         {
           "name": "⚙️・productivity-tools",
           "type": "text",
-          "topic": "Productivity tools.",
+          "topic": "PRODUCTIVITY ARSENAL: Speed up operations with workflow automation tools.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -5758,7 +5758,7 @@
         {
           "name": "🤖・ai-tools",
           "type": "text",
-          "topic": "AI tools.",
+          "topic": "AI CAPABILITIES: Practical LLMs and automation tools for research and copy.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -5860,7 +5860,7 @@
         {
           "name": "💬・feedback",
           "type": "text",
-          "topic": "Feedback.",
+          "topic": "SOCIETY FEEDBACK: Share honest feedback to improve the community.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -5913,7 +5913,7 @@
         {
           "name": "💡・suggestions",
           "type": "text",
-          "topic": "Suggestions.",
+          "topic": "IDEA VAULT: Suggest improvements, events or initiatives.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -5966,7 +5966,7 @@
         {
           "name": "🚀・feature-requests",
           "type": "text",
-          "topic": "Feature requests.",
+          "topic": "BOT REQUESTS: Propose new commands or features for Zodiac.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -6019,7 +6019,7 @@
         {
           "name": "🚩・report-a-problem",
           "type": "text",
-          "topic": "Report a problem.",
+          "topic": "ISSUE REPORTS: Report broken links, bad behavior or server bugs.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -6072,7 +6072,7 @@
         {
           "name": "✅・task-feedback",
           "type": "text",
-          "topic": "Task feedback.",
+          "topic": "SOCIETY FEEDBACK: Share honest feedback to improve the community.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -6125,7 +6125,7 @@
         {
           "name": "🩺・profile-review",
           "type": "text",
-          "topic": "Profile review.",
+          "topic": "PROFILE CRITIQUE: Peer reviews for LinkedIn, Twitter & agency websites.",
           "position": 6,
           "permissions": {
             "@everyone": {
@@ -6178,7 +6178,7 @@
         {
           "name": "💎・offer-review",
           "type": "text",
-          "topic": "Offer review.",
+          "topic": "OFFER TEARDOWNS: Submit your offer structure for harsh peer review before launching.",
           "position": 7,
           "permissions": {
             "@everyone": {
@@ -6231,7 +6231,7 @@
         {
           "name": "📝・outreach-review",
           "type": "text",
-          "topic": "Outreach review.",
+          "topic": "COPY REVIEW: Get your cold email or DM reviewed before hitting send.",
           "position": 8,
           "permissions": {
             "@everyone": {
@@ -6284,7 +6284,7 @@
         {
           "name": "🏆・wins-and-results",
           "type": "text",
-          "topic": "Wins and results.",
+          "topic": "REVENUE CELEBRATIONS: Celebrate closed deals & cash collected! Use Zodiac /win command.",
           "position": 9,
           "permissions": {
             "@everyone": {
@@ -6337,7 +6337,7 @@
         {
           "name": "🧠・lessons-learned",
           "type": "text",
-          "topic": "Lessons learned.",
+          "topic": "POST-MORTEM: Lessons from lost deals, churned clients or failed campaigns.",
           "position": 10,
           "permissions": {
             "@everyone": {
@@ -6439,7 +6439,7 @@
         {
           "name": "💬・general-chat",
           "type": "text",
-          "topic": "General community interaction.",
+          "topic": "THE BARRACKS: Open community discussion, daily acquisition banter & general chatter.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -6492,7 +6492,7 @@
         {
           "name": "❓・questions",
           "type": "text",
-          "topic": "Questions.",
+          "topic": "TACTICAL Q&A: Ask any question on acquisition, sales, tech or operations.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -6545,7 +6545,7 @@
         {
           "name": "🌐・networking",
           "type": "text",
-          "topic": "Networking.",
+          "topic": "OPERATOR NETWORKING: Connect, exchange backgrounds and build strategic relationships.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -6598,7 +6598,7 @@
         {
           "name": "🎲・random",
           "type": "text",
-          "topic": "Random discussions.",
+          "topic": "OFF-TOPIC: Casual banter, humor & non-work conversations.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -6651,7 +6651,7 @@
         {
           "name": "💬・discussion",
           "type": "text",
-          "topic": "Community discussion.",
+          "topic": "DEPARTMENT DISCUSSION: Collaborative discussions on this department topic.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -6753,7 +6753,7 @@
         {
           "name": "🎁・skill-offer",
           "type": "text",
-          "topic": "Skill offer.",
+          "topic": "SKILL OFFER: Offer your verified expertise to fellow operators.",
           "position": 1,
           "permissions": {
             "@everyone": {
@@ -6806,7 +6806,7 @@
         {
           "name": "🤲・skill-request",
           "type": "text",
-          "topic": "Skill request.",
+          "topic": "SKILL REQUEST: Request assistance or hire specialists for specific bottlenecks.",
           "position": 2,
           "permissions": {
             "@everyone": {
@@ -6859,7 +6859,7 @@
         {
           "name": "🤝・collaboration",
           "type": "text",
-          "topic": "Collaboration.",
+          "topic": "JOINT VENTURES: Partner up on client projects or co-marketing campaigns.",
           "position": 3,
           "permissions": {
             "@everyone": {
@@ -6912,7 +6912,7 @@
         {
           "name": "🔍・looking-for-partner",
           "type": "text",
-          "topic": "Looking for a partner.",
+          "topic": "AGENCY PARTNERS: Find co-founders, media buyers or outreach specialists.",
           "position": 4,
           "permissions": {
             "@everyone": {
@@ -6965,7 +6965,7 @@
         {
           "name": "🆘・project-help",
           "type": "text",
-          "topic": "Project help.",
+          "topic": "SOS PROJECT HELP: Emergency assistance on active client deliverables.",
           "position": 5,
           "permissions": {
             "@everyone": {
@@ -7018,7 +7018,7 @@
         {
           "name": "🕸️・referral-network",
           "type": "text",
-          "topic": "Referral network.",
+          "topic": "LEAD REFERRALS: Pass off leads outside your ICP to verified society members.",
           "position": 6,
           "permissions": {
             "@everyone": {
